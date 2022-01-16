@@ -1,48 +1,90 @@
-import React, { useContext } from 'react'
-import { Redirect } from 'react-router-dom'
-import { AuthContext } from './Auth'
-import firebaseConfig from '../config'
+import React, { useContext } from "react";
+import { Redirect } from "react-router-dom";
+import { AuthContext } from "./Auth";
+import firebaseConfig from "../config";
+import { FaUserAlt } from "react-icons/fa";
+import { FaKey } from "react-icons/fa";
+import "./LogIn.css";
 
 const LogIn = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const { email, password } = e.target.elements;
 
-        const { email, password } = e.target.elements;
-
-        try {
-
-            firebaseConfig.auth().signInWithEmailAndPassword(email.value, password.value);
-
-        } catch(error) {
-            alert(error);
-        }
+    try {
+      firebaseConfig
+        .auth()
+        .signInWithEmailAndPassword(email.value, password.value);
+    } catch (error) {
+      alert(error);
     }
+  };
 
-    const { currentUser } = useContext(AuthContext);
-    if (currentUser) {
-        return <Redirect to="/dashboard" />;
-    }
+  const { currentUser } = useContext(AuthContext);
+  if (currentUser) {
+    return <Redirect to="/home" />;
+  }
 
-    return (
-        <>
-            <div className="container mt-5">
-            <h1>Log In</h1>
-            <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">Email address</label>
-                <input type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <div className="fullarea">
+          <div className="position-absolute top-50 start-50 translate-middle">
+            <div className="card box shadowbox">
+              <div className="text-center">
+                <br />
+                <br />
+                <div className="text-center">
+                  <h1 className="logotext">TIME ATTENDANCE</h1>
+                </div>
+              </div>
+              <br />
+              <br />
+              <div className="my-4"></div>
+              <div className="form">
+                <label for="email" className="from-label"></label>
+                <FaUserAlt className="fa lgicon" />
+                <input
+                  type="email"
+                  name="email"
+                  className="text-center inputtext rounded-pill"
+                  placeholder="อีเมล"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div className="form my-2">
+                <label
+                  for="exampleInputPassword1"
+                  className="from-label"
+                ></label>
+                <FaKey className="fa lgicon" />
+                <input
+                  type="password"
+                  name="password"
+                  className="text-center inputtext rounded-pill"
+                  placeholder="รหัสผ่าน"
+                  id="exampleInputPassword1"
+                />
+              </div>
+              <br />
+              <br />
+              <div className="d-grid gap-2 col-4 mx-auto">
+                <button
+                  className="buttonp text-white rounded-pill my-3"
+                  type="submit"
+                >
+                  เข้าสู่ระบบ
+                </button>
+                <br />
+              </div>
             </div>
-            <div className="mb-3">
-                <label for="exampleInputPassword1" className="form-label">Password</label>
-                <input type="password" name="password" className="form-control" id="exampleInputPassword1" />
-            </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
-            </div>
-        </>
-    )
-}
+          </div>
+        </div>
+      </form>
+    </>
+  );
+};
 
 export default LogIn;

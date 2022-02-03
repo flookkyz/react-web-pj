@@ -43,7 +43,7 @@ const LogIn = () => {
               <br />
               <div className="my-4"></div>
               <div className="form">
-                <label for="email" className="from-label"></label>
+                <label htmlFor="email" className="from-label"></label>
                 <FaUserAlt className="fa lgicon" />
                 <input
                   type="email"
@@ -56,7 +56,7 @@ const LogIn = () => {
               </div>
               <div className="form my-2">
                 <label
-                  for="exampleInputPassword1"
+                  htmlFor="exampleInputPassword1"
                   className="from-label"
                 ></label>
                 <FaKey className="fa lgicon" />

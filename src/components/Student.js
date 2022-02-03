@@ -7,13 +7,36 @@ import "./Allpage.css";
 class Student extends Component {
   constructor(props) {
     super(props);
-    this.ref = firebase.firestore().collection("students");
-    this.unsubscribe = null;
+    firebase.auth().onAuthStateChanged((user) => {
+      const uid = user.uid;
+      firebase
+        .firestore()
+        .collection("teachers")
+        .doc(uid)
+        .get()
+        .then((documentSnapshot) => {
+          console.log("cid =", documentSnapshot.data().cid);
+          console.log("uid =", uid);
+          if (documentSnapshot.data().cid !== "admin") {
+            this.ref = firebase
+              .firestore()
+              .collection("students")
+              .where("cid", "==", documentSnapshot.data().cid)
+              .orderBy("stunum", "asc");
+          } else {
+            this.ref = firebase
+              .firestore()
+              .collection("students")
+              .orderBy("stunum", "asc");
+          }
+          this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
+        });
+    });
+
     this.state = {
       user: [],
     };
   }
-
 
   onCollectionUpdate = (querySnapshot) => {
     const user = [];
@@ -31,11 +54,7 @@ class Student extends Component {
     this.setState({
       user,
     });
-    
   };
-  componentDidMount() {
-    this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
-  }
 
   render() {
     return (
@@ -65,7 +84,9 @@ class Student extends Component {
                     <tr>
                       <td>{user.stunum}</td>
                       <td>{user.stuname}</td>
-                      <td>{user.croom}/{user.nroom}</td>
+                      <td>
+                        {user.croom}/{user.nroom}
+                      </td>
                       <td>
                         <Link to={`/showstu/${user.key}`}>
                           <button

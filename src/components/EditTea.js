@@ -79,75 +79,70 @@ class EditTea extends Component {
 
   render() {
     return (
-      <div class="container">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-              <br /><br />
-            <h3 class="panel-title">แก้ไขข้อมูลคุณครู</h3>
-          </div>
-            <form onSubmit={this.onSubmit}>
-              <div class="form-group ">
-                <label for="title">รหัสคุณครู :</label>
-                <input
-                  type="text"
-                  class="form-control in"
-                  name="stunum"
-                  value={this.state.teanum}
-                  onChange={this.onChange}
-                  placeholder="ID"
-                />
-              </div>
-              <div class="form-group">
-                <label for="description">ชื่อ - นามสกุล :</label>
-                <input
-                  type="text"
-                  class="form-control in"
-                  name="stuname"
-                  value={this.state.teaname}
-                  onChange={this.onChange}
-                  placeholder="Name"
-                />
-              </div>
-              <div class="form-group">
-                <label for="author">รหัสชั้นเรียน :</label>
-                <input
-                  type="text"
-                  class="form-control in"
-                  name="cid"
-                  value={this.state.cid}
-                  onChange={this.onChange}
-                  placeholder="Class ID"
-                />
-              </div>
-              <div class="form-group">
-                <label for="author">ชั้นปี :</label>
-                <input
-                  type="text"
-                  class="form-control in"
-                  name="croom"
-                  value={this.state.croom}
-                  onChange={this.onChange}
-                  placeholder="Class"
-                />
-              </div>
-              <div class="form-group">
-                <label for="author">ห้อง :</label>
-                <input
-                  type="text"
-                  class="form-control in"
-                  name="nroom"
-                  value={this.state.nroom}
-                  onChange={this.onChange}
-                  placeholder="Room"
-                />
-              </div>
-              <br />
-              <button type="submit" class="btn btn-success bt">
-                Submit
-              </button>
-            </form>
-          </div>
+      <form className="signup-login" onSubmit={this.onSubmit}>
+        <h2 className="text-center">แก้ไขคุณครู</h2>
+        <div class="form-group ">
+          <label htmlFor="title">รหัสคุณครู :</label>
+          <input
+            type="text"
+            class="form-control in"
+            name="stunum"
+            value={this.state.teanum}
+            onChange={this.onChange}
+            placeholder="ID"
+          />
         </div>
+        <div class="form-group">
+          <label htmlFor="description">ชื่อ - นามสกุล :</label>
+          <input
+            type="text"
+            class="form-control in"
+            name="stuname"
+            value={this.state.teaname}
+            onChange={this.onChange}
+            placeholder="Name"
+          />
+        </div>
+        <div class="form-group">
+          <label htmlFor="author">รหัสชั้นเรียน :</label>
+          <input
+            type="text"
+            class="form-control in"
+            name="cid"
+            value={this.state.cid}
+            onChange={this.onChange}
+            placeholder="Class ID"
+          />
+        </div>
+        <div class="form-group">
+          <label htmlFor="author">ชั้นปี :</label>
+          <input
+            type="text"
+            class="form-control in"
+            name="croom"
+            value={this.state.croom}
+            onChange={this.onChange}
+            placeholder="Class"
+          />
+        </div>
+        <div class="form-group">
+          <label htmlFor="author">ห้อง :</label>
+          <input
+            type="text"
+            class="form-control in"
+            name="nroom"
+            value={this.state.nroom}
+            onChange={this.onChange}
+            placeholder="Room"
+          />
+        </div>
+        <br />
+        <div className="text-center">
+          <button type="submit" className="btn btn-success bt ">
+            แก้ไข
+          </button>
+        </div>
+      </form>
     );
   }
 }

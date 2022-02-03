@@ -4,7 +4,7 @@ import DashBoard from "./Dashboard";
 import "./Create.css";
 
 class Createtea extends Component {
-  state = { teaname: '', email: '', password: '', teanum: '', croom:'', nroom:'' };
+  state = { teaname: '', email: '', password: '', teanum: '', croom:'', nroom:'', cid:'' };
 
   
   handleChange = (e) => {
@@ -15,7 +15,7 @@ class Createtea extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password, teaname, teanum, croom, nroom } = this.state;
+    const { email, password, teaname, teanum, croom, nroom, cid } = this.state;
     try {
       console.log(teaname, teanum);
       const { user } = await auth.createUserWithEmailAndPassword(
@@ -23,17 +23,17 @@ class Createtea extends Component {
         password
       );
       console.log(user,teanum);
-      await createTeaDocument(user, { teaname, teanum, croom, nroom });
+      await createTeaDocument(user, { teaname, teanum, croom, nroom, cid });
       this.props.history.push("/teacher");
     } catch (error) {
       console.log('error', error);
     }
 
-    this.setState({ teaname: '', email: '', password: '', teanum: '', croom:'', nroom:'' });
+    this.setState({ teaname: '', email: '', password: '', teanum: '', croom:'', nroom:'', cid:'' });
   };
 
   render() {
-    const { teaname, email, password, teanum, croom, nroom } = this.state;
+    const { teaname, email, password, teanum, croom, nroom, cid } = this.state;
     return (
       <>
       <header>
@@ -51,6 +51,13 @@ class Createtea extends Component {
             placeholder="ชื่อคุณครู"
           />
           <input
+            type="text"
+            name="teanum"
+            value={teanum}
+            onChange={this.handleChange}
+            placeholder="รหัสคุณครู"
+          />
+          <input
             type="email"
             name="email"
             value={email}
@@ -65,13 +72,6 @@ class Createtea extends Component {
             placeholder="รหัสผ่านเพื่อเข้าสู่ระบบ (ตัวอย่าง => รหัสคุณครู)"
           />
           <input
-            type="text"
-            name="teanum"
-            value={teanum}
-            onChange={this.handleChange}
-            placeholder="รหัสคุณครู"
-          />
-          <input
             type="name"
             name="croom"
             value={croom}
@@ -84,6 +84,13 @@ class Createtea extends Component {
             value={nroom}
             onChange={this.handleChange}
             placeholder="ห้องเรียน"
+          />
+          <input
+            type="name"
+            name="cid"
+            value={cid}
+            onChange={this.handleChange}
+            placeholder="รหัสห้องเรียน (ตัวอย่าง ถ้าห้อง 1/1 ใส่ 11)"
           />
           <button className="btsi">เพิ่มคุณครูใหม่</button>
         </form>

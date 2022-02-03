@@ -7,7 +7,11 @@ import "./Allpage.css";
 class Teacher extends Component {
   constructor(props) {
     super(props);
-    this.ref = firebase.firestore().collection("teachers").where('teanum','!=' ,'a' ).orderBy('teanum', 'asc');
+    this.ref = firebase
+      .firestore()
+      .collection("teachers")
+      .where("teanum", "!=", "a")
+      .orderBy("teanum", "asc");
     this.unsubscribe = null;
     this.state = {
       user: [],
@@ -63,7 +67,9 @@ class Teacher extends Component {
                     <tr>
                       <td>{user.teanum}</td>
                       <td>{user.teaname}</td>
-                      <td>{user.croom}/{user.nroom}</td>
+                      <td>
+                        {user.croom}/{user.nroom}
+                      </td>
                       <td>
                         <Link to={`/showtea/${user.key}`}>
                           <button

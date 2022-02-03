@@ -4,7 +4,7 @@ import DashBoard from "./Dashboard";
 import "./Create.css";
 
 class CreateStu extends Component {
-  state = { stuname: '', email: '', password: '', stunum: '', croom:'', nroom:'' };
+  state = { stuname: '', email: '', password: '', stunum: '', croom:'', nroom:'', cid:'' };
 
   
   handleChange = (e) => {
@@ -15,7 +15,7 @@ class CreateStu extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password, stuname, stunum, croom, nroom } = this.state;
+    const { email, password, stuname, stunum, croom, nroom, cid } = this.state;
     try {
       console.log(stuname, stunum);
       const { user } = await auth.createUserWithEmailAndPassword(
@@ -23,17 +23,17 @@ class CreateStu extends Component {
         password
       );
       console.log(user,stunum);
-      await createStuDocument(user, { stuname, stunum, croom, nroom });
+      await createStuDocument(user, { stuname, stunum, croom, nroom, cid });
       this.props.history.push("/student");
     } catch (error) {
       console.log('error', error);
     }
 
-    this.setState({ stuname: '', email: '', password: '', stunum: '', croom:'', nroom:'' });
+    this.setState({ stuname: '', email: '', password: '', stunum: '', croom:'', nroom:'', cid:'' });
   };
 
   render() {
-    const { stuname, email, password, stunum, croom, nroom } = this.state;
+    const { stuname, email, password, stunum, croom, nroom, cid } = this.state;
     return (
       <>
       <header>
@@ -84,6 +84,13 @@ class CreateStu extends Component {
             value={nroom}
             onChange={this.handleChange}
             placeholder="ห้องเรียน"
+          />
+          <input
+            type="name"
+            name="cid"
+            value={cid}
+            onChange={this.handleChange}
+            placeholder="รหัสห้องเรียน (ตัวอย่าง ถ้าห้อง 1/1 ใส่ 11)"
           />
           <button className="btsi">เพิ่มนักเรียนใหม่</button>
         </form>

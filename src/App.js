@@ -14,7 +14,8 @@ import CreateTea from "./components/CreateTea";
 import ShowTea from "./components/ShowTea";
 import EditTea from "./components/EditTea";
 import CreateTable from "./components/CreateTable";
-import Test from "./components/test";
+import Pagenotfound from "./components/Pagenotfound";
+
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
           <Route path="/showtea/:id" component={ShowTea} />
           <Route path="/edittea/:id" component={EditTea} />
           <Route path="/createtable" component={CreateTable} />
-          <Route path="/test" component={Test} />
+          <Route component={Pagenotfound} />
         </Switch>
       </Router>
     </AuthProvider>

@@ -11,12 +11,12 @@ const DashBoard = () => {
     return <Redirect to="/" />;
   }
 
+  
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light" id="app-navbar">
       <div className="container-fluid">
-        <div className="navbar-brand name">
-          TimeAttendance
-        </div>
+        <div className="navbar-brand name">TimeAttendance</div>
         <button
           className="navbar-toggler"
           type="button"
@@ -62,7 +62,9 @@ const DashBoard = () => {
             </li>
           </ul>
           <Link className="nav-link " to="/">
-            <span onClick={() => firebaseConfig.auth().signOut()}>ออกจากระบบ</span>
+            <span onClick={() => firebaseConfig.auth().signOut()}>
+              ออกจากระบบ
+            </span>
           </Link>
         </div>
       </div>

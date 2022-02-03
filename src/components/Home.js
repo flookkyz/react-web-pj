@@ -9,7 +9,7 @@ import { BsFillBookFill } from "react-icons/bs";
 import { FaChalkboardTeacher } from "react-icons/fa";
 
 const Home = () => {
-    // const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
 
   return (
     <>
@@ -18,7 +18,7 @@ const Home = () => {
       </header>
       <br />
       <br />
-      <div class="container">
+      <div className="container">
         <div className="d-flex justify-content-center mt-3">
           <span className="text text-center">Wathongpathummawat School</span>
         </div>
@@ -27,59 +27,65 @@ const Home = () => {
       <br />
       <br />
       <br />
-      <div class="grid">
-        <div class="item">
-          <div class="content">
-              <br /><br />
-              <BsFillPersonFill className="ic text-center" />
-              <br /><br />
+      <div className="grid">
+        <div className="item">
+          <div className="content">
+            <br />
+            <br />
+            <BsFillPersonFill className="ic text-center" />
+            <br />
+            <br />
             <p>นักเรียน</p>
             <Link to="createstu">
-            <button className="btn btn-primary me-md-2 add" type="button">
-              เพิ่ม
-            </button>
-          </Link>
-          
+              <button className="btn btn-primary me-md-2 add" type="button">
+                เพิ่ม
+              </button>
+            </Link>
           </div>
-          
         </div>
-        <div class="item">
-          <div class="content">
-              <br /><br />
-              <FaChalkboardTeacher className="ic text-center" />
-              <br /><br />
-              <p>คุณครู</p>
+        <div className="item">
+          <div className="content">
+            <br />
+            <br />
+            <FaChalkboardTeacher className="ic text-center" />
+            <br />
+            <br />
+            <p>คุณครู</p>
             <Link to="createtea">
-            <button className="btn btn-primary me-md-2 add" type="button">
-            เพิ่ม
-            </button>
-          </Link>
+              <button className="btn btn-primary me-md-2 add" type="button">
+                เพิ่ม
+              </button>
+            </Link>
           </div>
         </div>
-        <div class="item">
-          <div class="content">
-              <br /><br />
-              <BsFillImageFill className="ic text-center" />
-              <br /><br />
+        <div className="item">
+          <div className="content">
+            <br />
+            <br />
+            <BsFillImageFill className="ic text-center" />
+            <br />
+            <br />
             <p>ตารางเรียน</p>
             <Link to="createtable">
-            <button className="btn btn-primary me-md-2 add" type="button">
-            เพิ่ม
-            </button>
-          </Link>
+              <button className="btn btn-primary me-md-2 add" type="button">
+                เพิ่ม
+              </button>
+            </Link>
           </div>
         </div>
-        <div class="item">
-          <div class="content">
-              <br /><br />
-              <BsFillBookFill className="ic text-center" />
-              <br /><br />
+        <div className="item">
+          <div className="content">
+            <br />
+            <br />
+            <BsFillBookFill className="ic text-center" />
+            <br />
+            <br />
             <p>วิชา</p>
             <Link to="create">
-            <button className="btn btn-primary me-md-2 add" type="button">
-            เพิ่ม
-            </button>
-          </Link>
+              <button className="btn btn-primary me-md-2 add" type="button">
+                เพิ่ม
+              </button>
+            </Link>
           </div>
         </div>
       </div>

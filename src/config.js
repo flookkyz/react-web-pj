@@ -18,13 +18,13 @@ export const firestore = firebase.firestore();
 export const createStuDocument = async (user, additionalData) => {
   if (!user) return;
 
-  const userRef = firestore.doc(`students/${user.uid}`);
+  const userRef = firestore.collection('students').doc(`${user.uid}`);
 
   const snapshot = await userRef.get();
 
   if (!snapshot.exists) {
     const { email } = user;
-    const { stuname, stunum, croom, nroom } = additionalData;
+    const { stuname, stunum, croom, nroom, cid } = additionalData;
 
     try {
       await userRef.set({
@@ -33,17 +33,10 @@ export const createStuDocument = async (user, additionalData) => {
         stunum,
         croom,
         nroom,
-      }).then(
-        await firestore.collection('test').doc(`${user.uid}`).set({
-          stuname,
-          email,
-          stunum,
-          croom,
-          nroom,
-        })
-      );
+        cid,
+      });
     } catch (error) {
-      console.log("Error in creating student", error);
+      console.log("Error in creating students", error);
     }
   }
 };
@@ -57,7 +50,7 @@ export const createTeaDocument = async (user, additionalData) => {
 
   if (!snapshot.exists) {
     const { email } = user;
-    const { teaname, teanum, croom, nroom } = additionalData;
+    const { teaname, teanum, croom, nroom, cid } = additionalData;
 
     try {
       await userRef.set({
@@ -66,6 +59,7 @@ export const createTeaDocument = async (user, additionalData) => {
         teanum,
         croom,
         nroom,
+        cid,
       });
     } catch (error) {
       console.log("Error in creating teacher", error);

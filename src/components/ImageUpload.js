@@ -33,7 +33,7 @@ function ImageUpload(props) {
   return (
     <>
       <div className="form-control center">
-        <label for="title">รูปภาพตารางเรียน :</label>
+        <label htmlFor="title">รูปภาพตารางเรียน :</label>
         <input
           type="file"
           className="form-control in"

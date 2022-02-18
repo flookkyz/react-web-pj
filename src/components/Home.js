@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 // import { AuthContext } from "./Auth";
+// import firebase from "../config";
 import DashBoard from "./Dashboard";
 import "./Allpage.css";
 import { BsFillPersonFill } from "react-icons/bs";
@@ -10,6 +11,17 @@ import { FaChalkboardTeacher } from "react-icons/fa";
 
 const Home = () => {
   // const { currentUser } = useContext(AuthContext);
+  // firebase.auth().onAuthStateChanged((user) => {
+  //   const uid = user.uid;
+  //   firebase
+  //     .firestore()
+  //     .collection("students")
+  //     .doc(uid)
+  //     .get()
+  //     .then((documentSnapshot) => {
+  //       console.log("cid =", documentSnapshot.data().cid);
+  //       console.log("uid =", uid); });
+  //     });
 
   return (
     <>
@@ -66,9 +78,9 @@ const Home = () => {
             <br />
             <br />
             <p>ตารางเรียน</p>
-            <Link to="createtable">
+            <Link to="table">
               <button className="btn btn-primary me-md-2 add" type="button">
-                เพิ่ม
+              แก้ไข
               </button>
             </Link>
           </div>
@@ -81,9 +93,9 @@ const Home = () => {
             <br />
             <br />
             <p>วิชา</p>
-            <Link to="create">
+            <Link to="score">
               <button className="btn btn-primary me-md-2 add" type="button">
-                เพิ่ม
+                แก้ไข
               </button>
             </Link>
           </div>

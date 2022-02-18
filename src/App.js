@@ -15,6 +15,11 @@ import ShowTea from "./components/ShowTea";
 import EditTea from "./components/EditTea";
 import CreateTable from "./components/CreateTable";
 import Pagenotfound from "./components/Pagenotfound";
+import ImageUpload from "./components/ImageUpload";
+import Table from "./components/Table";
+import ShowTable from "./components/ShowTable";
+import Score from "./components/Score";
+import EditScore from "./components/EditScore";
 
 
 function App() {
@@ -34,11 +39,18 @@ function App() {
           <Route path="/createtea" component={CreateTea} />
           <Route path="/showtea/:id" component={ShowTea} />
           <Route path="/edittea/:id" component={EditTea} />
-          <Route path="/createtable" component={CreateTable} />
+          <Route path="/edittable/:id" component={CreateTable} />
+          <Route path="/imgupload" component={ImageUpload} />
+          <Route path="/table" component={Table} />
+          <Route path="/showtable/:id" component={ShowTable} />
+          <Route path="/score" component={Score} />
+          <Route path="/editscore/:id" component={EditScore} />
           <Route component={Pagenotfound} />
         </Switch>
       </Router>
     </AuthProvider>
+
+    // WEB BY ANUCHIT
   );
 }
 

@@ -10,13 +10,14 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-
+    
     background-image: linear-gradient(135deg, rgba(119, 255, 82, 0.71) 0%, rgba(0, 213, 255, 0.73) 75%);
 }
 
 ::-webkit-input-placeholder {
     color: rgb(136, 136, 136);
 }
+
 
 .logotext {
     color: #575757;

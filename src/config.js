@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 
 const firebaseConfig = firebase.initializeApp({
   apiKey: "AIzaSyDfLVowRODd_-LtNrrEPEofm-2Gb2kf_F0",
@@ -9,11 +10,13 @@ const firebaseConfig = firebase.initializeApp({
   storageBucket: "pj-time.appspot.com",
   messagingSenderId: "548881226627",
   appId: "1:548881226627:web:a4e0e327cc4a3793eaf4b6",
-  measurementId: "G-5K375YQ0DJ",
+  measurementId: "G-5K375YQ0DJ"
 });
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+export const storage = firebase.storage();
+
 
 export const createStuDocument = async (user, additionalData) => {
   if (!user) return;
@@ -24,8 +27,21 @@ export const createStuDocument = async (user, additionalData) => {
 
   if (!snapshot.exists) {
     const { email } = user;
-    const { stuname, stunum, croom, nroom, cid } = additionalData;
-
+    const { stuname, stunum, croom, nroom, cid} = additionalData;
+    var sid;
+    if (croom === "1") {
+      sid = ['th','eng','math'];
+    } else if (croom === "2") {
+      sid = ['th','eng','math'];
+    } else if (croom === "3") {
+      sid = ['th','eng','math'];
+    } else if (croom === "4") {
+      sid = ['th','eng','math'];
+    } else if (croom === "5") {
+      sid = ['th','eng','math'];
+    } else if (croom === "6") {
+      sid = ['th','eng','math'];
+    }
     try {
       await userRef.set({
         stuname,
@@ -34,6 +50,7 @@ export const createStuDocument = async (user, additionalData) => {
         croom,
         nroom,
         cid,
+        'sid': sid,
       });
     } catch (error) {
       console.log("Error in creating students", error);
@@ -66,4 +83,6 @@ export const createTeaDocument = async (user, additionalData) => {
     }
   }
 };
+
+
 export default firebaseConfig;

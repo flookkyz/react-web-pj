@@ -9,7 +9,7 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-items: center;
     align-items: center;
-    column-gap: 1px;
+    column-gap: 0px;
   }
   
   .content {
@@ -64,3 +64,4 @@ body {
     background-color: #ff0000;
     color: white;
 }
+

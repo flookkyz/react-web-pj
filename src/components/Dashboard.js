@@ -45,18 +45,18 @@ const DashBoard = () => {
                 คุณครู
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link className="nav-link" to="/home">
                 ชั้นปี
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
-              <Link className="nav-link" to="/home">
+              <Link className="nav-link" to="/table">
                 ตารางเรียน
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/home">
+              <Link className="nav-link" to="/score">
                 วิชาเรียน
               </Link>
             </li>

@@ -29,7 +29,7 @@ const LogIn = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div className="fullarea">
+        <div className="fullarea ">
           <div className="position-absolute top-50 start-50 translate-middle">
             <div className="card box shadowbox">
               <div className="text-center">
@@ -78,7 +78,9 @@ const LogIn = () => {
                   เข้าสู่ระบบ
                 </button>
                 <br />
+                
               </div>
+              
             </div>
           </div>
         </div>

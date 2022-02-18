@@ -4,7 +4,7 @@ import firebase from "../config";
 import DashBoard from "./Dashboard";
 import "./Allpage.css";
 
-class Student extends Component {
+class Score extends Component {
   constructor(props) {
     super(props);
     firebase.auth().onAuthStateChanged((user) => {
@@ -15,27 +15,13 @@ class Student extends Component {
         .doc(uid)
         .get()
         .then((documentSnapshot) => {
-          console.log("cid =", documentSnapshot.data().cid);
-          console.log("uid =", uid);
-          if (documentSnapshot.data().cid !== "admin") {
-            this.ref = firebase
-              .firestore()
-              .collection("students")
-              .where("cid", "==", documentSnapshot.data().cid)
-              .orderBy("stunum", "asc");
-          } else {
-            this.ref = firebase
-              .firestore()
-              .collection("students")
-              .orderBy("stunum", "asc");
-          }
+              this.ref = firebase
+                .firestore()
+                .collection("students")
+                .where("sid", "array-contains", documentSnapshot.data().sid)
+                .orderBy("stunum", "asc");
           this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
         });
-      this.ref = firebase
-        .firestore()
-        .collection("students")
-        .orderBy("stunum", "asc");
-      this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
     });
 
     this.state = {
@@ -71,18 +57,12 @@ class Student extends Component {
         <div className="container text-center">
           <div className="d-flex justify-content-center mt-3">
             <span className="text text-center">ข้อมูลนักเรียน</span>
+            
           </div>
           <br />
           <div className="panel panel-default">
             <div className="panel-body">
-              <table
-                className="table table-hover border-gray-300 tb"
-                id="table"
-                data-toggle="table"
-                data-height="460"
-                data-pagination="true"
-                data-page-size="25"
-              >
+              <table className="table table-hover border-gray-300 tb">
                 <thead>
                   <tr>
                     <th>รหัสนักเรียน</th>
@@ -100,7 +80,7 @@ class Student extends Component {
                         {user.croom}/{user.nroom}
                       </td>
                       <td>
-                        <Link to={`/showstu/${user.key}`}>
+                        <Link to={`/editscore/${user.key}`}>
                           <button
                             type="button"
                             className="btn btn-outline-warning bt"
@@ -121,6 +101,4 @@ class Student extends Component {
   }
 }
 
-<script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
-
-export default Student;
+export default Score;

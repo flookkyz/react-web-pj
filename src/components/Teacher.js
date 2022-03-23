@@ -10,7 +10,7 @@ class Teacher extends Component {
     this.ref = firebase
       .firestore()
       .collection("teachers")
-      .where("teanum", "!=", "a")
+      .where("teanum", "!=", "admin")
       .orderBy("teanum", "asc");
     this.unsubscribe = null;
     this.state = {
@@ -21,11 +21,12 @@ class Teacher extends Component {
   onCollectionUpdate = (querySnapshot) => {
     const user = [];
     querySnapshot.forEach((doc) => {
-      const { teanum, teaname, croom, nroom } = doc.data();
+      const { teanum, tealastname, teaname, croom, nroom } = doc.data();
       user.push({
         key: doc.id,
         doc, // DocumentSnapshot
         teanum,
+        tealastname,
         teaname,
         croom,
         nroom,
@@ -66,7 +67,7 @@ class Teacher extends Component {
                   {this.state.user.map((user) => (
                     <tr>
                       <td>{user.teanum}</td>
-                      <td>{user.teaname}</td>
+                      <td>{user.teaname} {user.tealastname}</td>
                       <td>
                         {user.croom}/{user.nroom}
                       </td>

@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
+import HomeAdmin from "./components/HomeAdmin";
 import Dashboard from "./components/Dashboard";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
@@ -20,7 +21,8 @@ import Table from "./components/Table";
 import ShowTable from "./components/ShowTable";
 import Score from "./components/Score";
 import EditScore from "./components/EditScore";
-
+import QRCode from "./components/QRCode";
+import ReportScore from "./components/ReportScore";
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
           <Route exact path="/" component={LogIn} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/home" component={Home} />
+          <Route exact path="/homeadmin" component={HomeAdmin} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/student" component={Student} />
           <Route path="/editstu/:id" component={EditStu} />
@@ -45,6 +48,8 @@ function App() {
           <Route path="/showtable/:id" component={ShowTable} />
           <Route path="/score" component={Score} />
           <Route path="/editscore/:id" component={EditScore} />
+          <Route path="/updateclass" component={QRCode} />
+          <Route path="/reportscore/:id" component={ReportScore} />
           <Route component={Pagenotfound} />
         </Switch>
       </Router>

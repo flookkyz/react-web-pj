@@ -4,6 +4,7 @@ import firebase from "../config";
 import DashBoard from "./Dashboard";
 import "./Allpage.css";
 
+
 class Score extends Component {
   constructor(props) {
     super(props);
@@ -85,7 +86,15 @@ class Score extends Component {
                             type="button"
                             className="btn btn-outline-warning bt"
                           >
-                            แก้ไข
+                            เพิ่มคะแนน
+                          </button>
+                        </Link>
+                        <Link to={`/reportscore/${user.key}`}>
+                          <button
+                            type="button"
+                            className="mx-2 btn btn-outline-warning bt"
+                          >
+                            ดาวน์โหลดคะแนน
                           </button>
                         </Link>
                       </td>

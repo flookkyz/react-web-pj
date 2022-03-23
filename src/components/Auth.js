@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
     if (loading) {
-        return <p>Loading...</p>;
+        return <div className="position-absolute top-50 start-50 translate-middle"><div class="spinner-border"></div></div>;
     }
 
     return (

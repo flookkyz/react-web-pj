@@ -6,7 +6,15 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    column-gap: 0px;
+  }
+
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
     align-items: center;
     column-gap: 0px;
@@ -28,6 +36,10 @@ body {
 
 .add {
   background-color: #cc5353;
+}
+
+.add:disabled {
+  background-color: #969696;
 }
 
 .add:hover {
@@ -65,3 +77,6 @@ body {
     color: white;
 }
 
+.tooltip-inner {
+  max-width: 700px;
+}

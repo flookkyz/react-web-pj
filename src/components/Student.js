@@ -15,8 +15,8 @@ class Student extends Component {
         .doc(uid)
         .get()
         .then((documentSnapshot) => {
-          console.log("cid =", documentSnapshot.data().cid);
-          console.log("uid =", uid);
+          // console.log("cid =", documentSnapshot.data().cid);
+          // console.log("uid =", uid);
           if (documentSnapshot.data().cid !== "admin") {
             this.ref = firebase
               .firestore()
@@ -46,12 +46,13 @@ class Student extends Component {
   onCollectionUpdate = (querySnapshot) => {
     const user = [];
     querySnapshot.forEach((doc) => {
-      const { stunum, stuname, croom, nroom } = doc.data();
+      const { stunum, stuname, stulastname, croom, nroom } = doc.data();
       user.push({
         key: doc.id,
         doc, // DocumentSnapshot
         stunum,
         stuname,
+        stulastname,
         croom,
         nroom,
       });
@@ -60,6 +61,8 @@ class Student extends Component {
       user,
     });
   };
+
+  
 
   render() {
     return (
@@ -88,6 +91,7 @@ class Student extends Component {
                     <th>รหัสนักเรียน</th>
                     <th>ชื่อ - นามสกุล</th>
                     <th>ชั้นปี</th>
+                    
                     <th>จัดการ</th>
                   </tr>
                 </thead>
@@ -95,10 +99,11 @@ class Student extends Component {
                   {this.state.user.map((user) => (
                     <tr>
                       <td>{user.stunum}</td>
-                      <td>{user.stuname}</td>
+                      <td>{user.stuname} {user.stulastname}</td>
                       <td>
                         {user.croom}/{user.nroom}
                       </td>
+                      
                       <td>
                         <Link to={`/showstu/${user.key}`}>
                           <button
@@ -121,6 +126,5 @@ class Student extends Component {
   }
 }
 
-<script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
 
 export default Student;

@@ -20,7 +20,6 @@ const LogIn = () => {
       alert(error);
     }
   };
-
   const { currentUser } = useContext(AuthContext);
   if (currentUser) {
     return <Redirect to="/home" />;
@@ -78,9 +77,7 @@ const LogIn = () => {
                   เข้าสู่ระบบ
                 </button>
                 <br />
-                
               </div>
-              
             </div>
           </div>
         </div>

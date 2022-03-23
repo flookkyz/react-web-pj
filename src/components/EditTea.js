@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import firebase from "../config";
 // import { Link } from "react-router-dom";
 import "./Create.css";
+import Swal from "sweetalert2";
 
 class EditTea extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class EditTea extends Component {
       key: "",
       teanum: "",
       teaname: "",
+      tealastname: "",
       croom: "",
       nroom: "",
       cid: "",
@@ -28,6 +30,7 @@ class EditTea extends Component {
           key: doc.id,
           teanum: teachers.teanum,
           teaname: teachers.teaname,
+          tealastname: teachers.tealastname,
           croom: teachers.croom,
           nroom: teachers.nroom,
           cid: teachers.cid,
@@ -47,7 +50,7 @@ class EditTea extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { teanum, teaname, croom, nroom, cid } = this.state;
+    const { teanum, teaname, tealastname, croom, nroom, cid } = this.state;
 
     const updateRef = firebase
       .firestore()
@@ -57,6 +60,7 @@ class EditTea extends Component {
       .set({
         teanum,
         teaname,
+        tealastname,
         croom,
         nroom,
         cid,
@@ -66,10 +70,18 @@ class EditTea extends Component {
           key: "",
           teanum: "",
           teaname: "",
+          tealastname: "",
           croom: "",
           nroom: "",
           cid: "",
         });
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'แก้ไขข้อมูลคุณครูสำเร็จ',
+          timer: 1500,
+          showConfirmButton: false
+        })
         this.props.history.push("/teacher");
       })
       .catch((error) => {
@@ -82,7 +94,7 @@ class EditTea extends Component {
       <form className="signup-login" onSubmit={this.onSubmit}>
         <h2 className="text-center">แก้ไขคุณครู</h2>
         <div class="form-group ">
-          <label htmlFor="title">รหัสคุณครู :</label>
+          <label htmlFor="author">รหัสคุณครู :</label>
           <input
             type="text"
             class="form-control in"
@@ -93,7 +105,7 @@ class EditTea extends Component {
           />
         </div>
         <div class="form-group">
-          <label htmlFor="description">ชื่อ - นามสกุล :</label>
+          <label htmlFor="author">ชื่อ :</label>
           <input
             type="text"
             class="form-control in"
@@ -101,6 +113,17 @@ class EditTea extends Component {
             value={this.state.teaname}
             onChange={this.onChange}
             placeholder="Name"
+          />
+        </div>
+        <div class="form-group">
+          <label htmlFor="description">นามสกุล :</label>
+          <input
+            type="text"
+            class="form-control in"
+            name="tealastname"
+            value={this.state.tealastname}
+            onChange={this.onChange}
+            placeholder="Lastname"
           />
         </div>
         <div class="form-group">

@@ -11,6 +11,7 @@ class EditScore extends Component {
       key: "",
       jobnum: "",
       score: "",
+      note: "",
     };
   }
 
@@ -33,8 +34,8 @@ class EditScore extends Component {
   }
 
   onSubmit = () => {
-    const { jobnum, score } = this.state;
-    console.log("jb=", jobnum, "sc=",score);
+    const { jobnum, score, note } = this.state;
+    console.log("jb=", jobnum, "sc=",score, "note",note);
     firebase.auth().onAuthStateChanged((user) => {
         const uid = user.uid;
         console.log("uid = ", uid);
@@ -48,12 +49,14 @@ class EditScore extends Component {
             .firestore()
             .collection("students")
             .doc(this.state.key)
-            .collection(`${documentSnapshot.data().sid}`)
+            .collection(`${documentSnapshot.data().sj}`)
             .doc(`time${jobnum}`)
             .set({
                 'score': score,
+                'note': note,
             });
           });
+          
           this.props.history.push("/score");
     });
   };
@@ -65,7 +68,7 @@ class EditScore extends Component {
   };
 
   render() {
-    const { jobnum, score } = this.state;
+    const { jobnum, score , note } = this.state;
     return (
       <>
         <header>
@@ -84,6 +87,7 @@ class EditScore extends Component {
                   value={jobnum}
                   onChange={this.handleChange}
                   placeholder="งานครั้งที่ 1 กรอก 1"
+                  required
                 />
                 <br />
                 <label className="mx-4" htmlFor="">กรอกคะแนน :</label>
@@ -94,10 +98,22 @@ class EditScore extends Component {
                   value={score}
                   onChange={this.handleChange}
                   placeholder="กรอกคะแนนนักเรียน"
+                  required
+                />
+                <br />
+                <label className="mx-2" htmlFor="">กรอกรายละเอียด :</label>
+                <input
+
+                  type="text"
+                  name="note"
+                  value={note}
+                  onChange={this.handleChange}
+                  placeholder="กรอกรายละเอียดของงาน"
+                  required
                 />
                 <br />
                 <br />
-                <button className="btn btn-success bt ">เพิ่มนักคะแนน</button>
+                <button className="btn btn-success bt ">เพิ่มคะแนน</button>
               </div>
             </div>
           </div>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import firebase from "../config";
 // import { Link } from "react-router-dom";
 import "./Create.css";
+import Swal from "sweetalert2";
 
 class EditStu extends Component {
   constructor(props) {
@@ -70,6 +71,13 @@ class EditStu extends Component {
           nroom: "",
           cid: "",
         });
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'แก้ไขข้อมูลนักเรียนสำเร็จ',
+          timer: 1500,
+          showConfirmButton: false
+        })
         this.props.history.push("/student");
       })
       .catch((error) => {

@@ -1,15 +1,43 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
+// import { Link } from "react-router-dom";
+import firebase from "../config";
 // import { AuthContext } from "./Auth";
 // import firebase from "../config";
 import DashBoard from "./Dashboard";
 import "./Allpage.css";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BsFillImageFill } from "react-icons/bs";
-import { BsFillBookFill } from "react-icons/bs";
 import { FaChalkboardTeacher } from "react-icons/fa";
 
-const Home = () => {
+class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      students: "",
+      teachers: "",
+      key: "",
+    };
+  }
+  componentDidMount() {
+    firebase
+      .firestore()
+      .collection("students")
+      .get()
+      .then((doc) => {
+        this.setState({
+          students: doc.size,
+        });
+      });
+    firebase
+      .firestore()
+      .collection("teachers")
+      .get()
+      .then((doc) => {
+        this.setState({
+          teachers: doc.size,
+        });
+      });
+  }
   // const { currentUser } = useContext(AuthContext);
   // firebase.auth().onAuthStateChanged((user) => {
   //   const uid = user.uid;
@@ -22,87 +50,53 @@ const Home = () => {
   //       console.log("cid =", documentSnapshot.data().cid);
   //       console.log("uid =", uid); });
   //     });
-
-  return (
-    <>
-      <header>
-        <DashBoard />
-      </header>
-      <br />
-      <br />
-      <div className="container">
-        <div className="d-flex justify-content-center mt-3">
-          <span className="text text-center">Wathongpathummawat School</span>
-        </div>
-      </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <div className="grid">
-        <div className="item">
-          <div className="content">
-            <br />
-            <br />
-            <BsFillPersonFill className="ic text-center" />
-            <br />
-            <br />
-            <p>นักเรียน</p>
-            <Link to="createstu">
-              <button className="btn btn-primary me-md-2 add" type="button">
-                เพิ่ม
-              </button>
-            </Link>
+  render() {
+    return (
+      <>
+        <header>
+          <DashBoard />
+        </header>
+        <br />
+        <br />
+        <div className="container">
+          <div className="d-flex justify-content-center mt-3">
+            <span className="text text-center">Wathongpathummawat School</span>
           </div>
         </div>
-        <div className="item">
-          <div className="content">
-            <br />
-            <br />
-            <FaChalkboardTeacher className="ic text-center" />
-            <br />
-            <br />
-            <p>คุณครู</p>
-            <Link to="createtea">
-              <button className="btn btn-primary me-md-2 add" type="button">
-                เพิ่ม
-              </button>
-            </Link>
+        <br />
+        <br />
+        <br />
+        <br />
+        <div className="grid">
+          <div className="item">
+            <div className="content">
+              <br />
+              <br />
+              <BsFillPersonFill className="ic text-center" />
+              <br />
+              <br />
+              <p>จำนวนนักเรียนทั้งหมด</p>
+              <p>{this.state.students}</p>
+              <p>คน</p>
+            </div>
           </div>
-        </div>
-        <div className="item">
-          <div className="content">
-            <br />
-            <br />
-            <BsFillImageFill className="ic text-center" />
-            <br />
-            <br />
-            <p>ตารางเรียน</p>
-            <Link to="table">
-              <button className="btn btn-primary me-md-2 add" type="button">
-              แก้ไข
-              </button>
-            </Link>
+          <div className="item">
+            <div className="content">
+              <br />
+              <br />
+              <FaChalkboardTeacher className="ic text-center" />
+              <br />
+              <br />
+              <p>จำนวนคุณครูทั้งหมด</p>
+              <p>{this.state.teachers}</p>
+              <p>คน</p>
+            </div>
           </div>
+          
         </div>
-        <div className="item">
-          <div className="content">
-            <br />
-            <br />
-            <BsFillBookFill className="ic text-center" />
-            <br />
-            <br />
-            <p>วิชา</p>
-            <Link to="score">
-              <button className="btn btn-primary me-md-2 add" type="button">
-                แก้ไข
-              </button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
+      </>
+    );
+  }
+}
 
 export default Home;

@@ -99,13 +99,8 @@ class ShowStu extends Component {
                 <dd><QRCode onClick={this.downloadQRCode} id="qrCodeEl" value={`${this.state.students.uid}`} /></dd>
               </dl>
               <br />
-              <Link
-                to={`/reporttime/${this.state.key}`}
-                class="btn btn-success bt"
-              >
-                การเช็คชื่อ
-              </Link>
-              &nbsp;
+              
+            
               <Link
                 to={`/editstu/${this.state.key}`}
                 class="btn btn-success bt"

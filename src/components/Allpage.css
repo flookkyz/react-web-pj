@@ -14,10 +14,32 @@ body {
 
   .grid2 {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: auto auto auto;
     justify-items: center;
     align-items: center;
-    column-gap: 0px;
+    
+  }
+
+  .grid2-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-items: center;
+    align-items: center;
+    
+  }
+
+  .grid-item {
+    color: #242424;
+    background-color: #fff;
+    font-weight: 600;
+    text-align: center;
+    box-sizing: border-box;
+    height: 300px;
+    width: 250px;
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
   }
   
   .content {

@@ -1,17 +1,18 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { Component } from "react";
 import firebase from "firebase";
 import { CSVLink } from "react-csv";
 
-function ReportScore() {
-  const [data, setData] = useState({
-    filename: "userReport.csv",
-    headers: [],
-    data: [],
-  });
-  const [id, setID] = useState("");
-  const filteredList = [];
-  useEffect(() => {
+class ReportScore extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      key: "",
+      
+    };
+    console.log("##state",this.state.key)
+  }
+
+  exportcsv  ()  {
     firebase.auth().onAuthStateChanged((user) => {
       const uid = user.uid;
       firebase
@@ -23,15 +24,15 @@ function ReportScore() {
           firebase
             .firestore()
             .collection("students")
-            .doc()
+            .doc(this.state.key)
             .collection(`${documentSnapshot.data().sj}`)
             .get()
             .then((userSnapshot) => {
-              console.log("##",user.key);
+              console.log("##key", this.state.key);
               let list = [];
               userSnapshot.forEach((doc) => {
+                console.log("##Each", userSnapshot.forEach(doc));
                 const { score, note } = doc.data();
-                setID(doc.data().usersID);
                 list.push({
                   usersID: doc.id,
                   score: score,
@@ -40,12 +41,6 @@ function ReportScore() {
               });
 
               const headers = [
-                // I'm not sure why you need this key
-                // but if it's only for uniqueness
-                // you can replace them by unique strings like
-                // { label: "User", key: "user" },
-                // { label: "Account", key: "account" },
-
                 { label: "User", key: "usersID" },
                 { label: "note", key: "note" },
                 { label: "score", key: "score" },
@@ -56,16 +51,21 @@ function ReportScore() {
                 headers: headers,
                 data: list,
               };
-              setData(csvReport);
             });
         });
     });
-  }, []);
-
-  
-
-
-  return <CSVLink {...data}>Export</CSVLink>;
+  };
+  render() {
+    return (
+      <>
+        <h1>test</h1>
+      </>
+    );
+  }
 }
 
 export default ReportScore;
+
+{
+  /* <CSVLink {...data}>Export</CSVLink>; */
+}

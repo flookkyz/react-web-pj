@@ -4,8 +4,7 @@ import firebase from "../config";
 import DashBoard from "./Dashboard";
 import "./Allpage.css";
 
-
-class Score extends Component {
+class ShowScore extends Component {
   constructor(props) {
     super(props);
     firebase.auth().onAuthStateChanged((user) => {
@@ -16,11 +15,13 @@ class Score extends Component {
         .doc(uid)
         .get()
         .then((documentSnapshot) => {
-              this.ref = firebase
-                .firestore()
-                .collection("students")
-                .where("sid", "array-contains", documentSnapshot.data().sid)
-                .orderBy("stunum", "asc");
+          this.ref = firebase
+            .firestore()
+            .collection("students")
+            // .where("sid", "array-contains", documentSnapshot.data().sid)
+            .doc(this.props.match.params.id)
+            .collection(documentSnapshot.data().sj);
+          //   .orderBy("doc", "asc")
           this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
         });
     });
@@ -32,15 +33,16 @@ class Score extends Component {
 
   onCollectionUpdate = (querySnapshot) => {
     const user = [];
+    const nb = 1;
     querySnapshot.forEach((doc) => {
-      const { stunum, stuname, croom, nroom } = doc.data();
+      const { score, note } = doc.data();
       user.push({
         key: doc.id,
+        rekey: this.props.match.params.id,
+        nb,
         doc, // DocumentSnapshot
-        stunum,
-        stuname,
-        croom,
-        nroom,
+        score,
+        note,
       });
     });
     this.setState({
@@ -57,46 +59,53 @@ class Score extends Component {
         <br />
         <div className="container text-center">
           <div className="d-flex justify-content-center mt-3">
-            <span className="text text-center">ข้อมูลนักเรียนในรายวิชาที่สอน</span>
-            
+            <span className="text text-center">
+              คะแนนนักเรียนในรายวิชาที่สอน
+            </span>
           </div>
           <br />
+          <div className="float-end">
+            <button type="button" className="btn btn-outline-warning bt">
+              ดาวน์โหลดคะแนน
+            </button>
+
+            <br />
+            <br />
+          </div>
           <div className="panel panel-default">
             <div className="panel-body">
               <table className="table table-hover border-gray-300 tb">
                 <thead>
                   <tr>
-                    <th>รหัสนักเรียน</th>
-                    <th>ชื่อ - นามสกุล</th>
-                    <th>ชั้นปี</th>
+                    <th>ครั้งที่</th>
+                    <th>รายละเอียดงาน</th>
+                    <th>คะแนน</th>
                     <th>จัดการ</th>
                   </tr>
                 </thead>
                 <tbody>
                   {this.state.user.map((user) => (
                     <tr>
-                      <td>{user.stunum}</td>
-                      <td>{user.stuname}</td>
+                      <td>{user.key}</td>
+                      <td>{user.note}</td>
+                      <td>{user.score}</td>
                       <td>
-                        {user.croom}/{user.nroom}
-                      </td>
-                      <td>
-                        <Link to={`/showscore/${user.key}`}>
+                        <Link to={`/rescore/${user.rekey}/${user.key}`}>
                           <button
                             type="button"
                             className="btn btn-outline-warning bt"
                           >
-                            จัดการ
+                            แก้ไข
                           </button>
                         </Link>
-                        <Link to={`/addscore/${user.key}`}>
+                        {/* <Link to={`/reportscore/${user.key}`}>
                           <button
                             type="button"
                             className="mx-2 btn btn-outline-warning bt"
                           >
-                            เพิ่มคะแนน
+                            ดาวน์โหลดคะแนน
                           </button>
-                        </Link>
+                        </Link> */}
                       </td>
                     </tr>
                   ))}
@@ -110,4 +119,4 @@ class Score extends Component {
   }
 }
 
-export default Score;
+export default ShowScore;

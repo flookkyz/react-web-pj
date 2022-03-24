@@ -23,6 +23,8 @@ import Score from "./components/Score";
 import EditScore from "./components/EditScore";
 import QRCode from "./components/QRCode";
 import ReportScore from "./components/ReportScore";
+import ShowScore from "./components/ShowScore";
+import ReScore from "./components/ReScore";
 
 function App() {
   return (
@@ -47,9 +49,11 @@ function App() {
           <Route path="/table" component={Table} />
           <Route path="/showtable/:id" component={ShowTable} />
           <Route path="/score" component={Score} />
-          <Route path="/editscore/:id" component={EditScore} />
+          <Route path="/addscore/:id" component={EditScore} />
           <Route path="/updateclass" component={QRCode} />
+          <Route path="/showscore/:id" component={ShowScore} />
           <Route path="/reportscore/:id" component={ReportScore} />
+          <Route path="/rescore/:uid/:id" component={ReScore} />
           <Route component={Pagenotfound} />
         </Switch>
       </Router>

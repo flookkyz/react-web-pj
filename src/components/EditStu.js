@@ -54,6 +54,7 @@ class EditStu extends Component {
       .firestore()
       .collection("students")
       .doc(this.state.key);
+
     updateRef
       .update({
         stunum,
@@ -72,12 +73,12 @@ class EditStu extends Component {
           cid: "",
         });
         Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'แก้ไขข้อมูลนักเรียนสำเร็จ',
+          position: "center",
+          icon: "success",
+          title: "แก้ไขข้อมูลนักเรียนสำเร็จ",
           timer: 1500,
-          showConfirmButton: false
-        })
+          showConfirmButton: false,
+        });
         this.props.history.push("/student");
       })
       .catch((error) => {

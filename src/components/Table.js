@@ -45,7 +45,7 @@ class Table extends Component {
         <br />
         <div className="container text-center">
           <div className="d-flex justify-content-center mt-3">
-            <span className="text text-center">ข้อมูลคุณครู</span>
+            <span className="text text-center">ข้อมูลตารางเรียน</span>
           </div>
           <br />
           <div className="panel panel-default">

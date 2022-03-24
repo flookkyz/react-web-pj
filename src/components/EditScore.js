@@ -50,7 +50,7 @@ class EditScore extends Component {
             .collection("students")
             .doc(this.state.key)
             .collection(`${documentSnapshot.data().sj}`)
-            .doc(`time${jobnum}`)
+            .doc(`${jobnum}`)
             .set({
                 'score': score,
                 'note': note,

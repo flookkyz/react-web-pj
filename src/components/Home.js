@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
+
 import firebase from "../config";
-// import { AuthContext } from "./Auth";
-// import firebase from "../config";
+
 import DashBoard from "./Dashboard";
 import "./Allpage.css";
 import { BsFillPersonFill } from "react-icons/bs";
-import { BsFillImageFill } from "react-icons/bs";
 import { FaChalkboardTeacher } from "react-icons/fa";
 
 class Home extends Component {

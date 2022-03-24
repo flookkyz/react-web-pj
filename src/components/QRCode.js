@@ -6,6 +6,7 @@ import "./LogIn.css";
 import Swal from "sweetalert2";
 
 class Student extends Component {
+  
   updateclass() {
     Swal.fire({
       title: "คุณแน่ใจแล้วที่จะอัปเดทชั้นปี ?",

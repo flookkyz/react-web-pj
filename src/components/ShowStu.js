@@ -12,6 +12,7 @@ class ShowStu extends Component {
       students: {},
       key: "",
     };
+    
   }
 
   componentDidMount() {
@@ -21,6 +22,7 @@ class ShowStu extends Component {
       .doc(this.props.match.params.id);
       
     ref.get().then((doc) => {
+      console.log("aa",doc.id)
       if (doc.exists) {
         this.setState({
           students: doc.data(),

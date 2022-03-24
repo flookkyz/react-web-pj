@@ -48,7 +48,8 @@ class HomeAdmin extends Component {
         <br />
         <div className="container">
           <div className="d-flex justify-content-center mt-3">
-            <span className="text text-center">Wathongpathummawat School</span>
+            <span className="text text-center">ADMIN PAGE</span>
+            
           </div>
         </div>
         <br />

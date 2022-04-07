@@ -5,45 +5,46 @@ import { CSVLink } from "react-csv";
 
 const ReportScore = () => {
   const [data, setData] = useState([]);
-  // const [id, setID] = useState("");
-  // const list = [];
+  const [id, setID] = useState("");
+  const list = [];
   useEffect(() => {
     firebase
       .firestore()
       .collection("students")
       .get()
       .then((userSnapshot) => {
-        const usersData = [];
         userSnapshot.forEach((doc) => {
           const { cid, croom } = doc.data();
-          const userData ={
+          setID(doc.data().usersID);
+          list.push({
             usersID: doc.id,
             cid: cid,
             croom: croom,
-          };
-          const headers = [
-            // here all the keys give undefined.
-            { label: "User", key: doc.id },
-            { label: "cid", key: cid },
-            { label: "croom", key: croom },
-          ];
-          console.log("data",userData);
-          const csvReport = {
-            filename: "userReport.csv",
-            headers: headers,
-            data: userData,
-            // also my data useState is undefined, although it holds values and i can see them in my table
-          };
-          usersData.push(csvReport);
+          });
         });
-        setData(usersData);
+        setData(list);
+        console.log("####", list);
       });
       
   }, [],);
+  console.log("####test", list);
+  const headers = [
+    // here all the keys give undefined.
+    { label: "User", key: data.usersID },
+    { label: "cid", key: data.cid },
+    { label: "croom", key: data.croom },
+  ];
+  // setData(list);
+  console.log("data", data)
   
-  
+  const csvReport = {
+    filename: "userReport.csv",
+    headers: headers,
+    data: list,
+    // also my data useState is undefined, although it holds values and i can see them in my table
+  };
 
-  return <CSVLink {...data}>Export</CSVLink>;
+  return <CSVLink {...csvReport}>Export</CSVLink>;
 };
 
 export default ReportScore;

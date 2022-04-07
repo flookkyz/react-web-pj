@@ -40,7 +40,7 @@ const ReportScore = () => {
   const csvReport = {
     filename: "userReport.csv",
     headers: headers,
-    data: list,
+    data: data,
     // also my data useState is undefined, although it holds values and i can see them in my table
   };
 

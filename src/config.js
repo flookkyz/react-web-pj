@@ -10,7 +10,7 @@ const firebaseConfig = firebase.initializeApp({
   storageBucket: "pj-time.appspot.com",
   messagingSenderId: "548881226627",
   appId: "1:548881226627:web:a4e0e327cc4a3793eaf4b6",
-  measurementId: "G-5K375YQ0DJ"
+  measurementId: "G-5K375YQ0DJ",
 });
 
 export const auth = firebase.auth();
@@ -29,17 +29,83 @@ export const createStuDocument = async (user, additionalData) => {
     const { stuname, stunum, stulastname, croom, nroom, cid } = additionalData;
     var sid;
     if (croom === "1") {
-      sid = ["thai1", "english1", "math1", "science1", "computer1", "social1", "pe1", "art1", "career1", "guidance1"];
+      sid = [
+        "thai1",
+        "english1",
+        "math1",
+        "science1",
+        "computer1",
+        "social1",
+        "pe1",
+        "art1",
+        "career1",
+        "guidance1",
+      ];
     } else if (croom === "2") {
-      sid = ["thai2", "english2", "math2", "science2", "computer2", "social2", "pe2", "art2", "career2", "guidance2"];
+      sid = [
+        "thai2",
+        "english2",
+        "math2",
+        "science2",
+        "computer2",
+        "social2",
+        "pe2",
+        "art2",
+        "career2",
+        "guidance2",
+      ];
     } else if (croom === "3") {
-      sid = ["thai3", "english3", "math3", "science3", "computer3", "social3", "pe3", "art3", "career3", "guidance3"];
+      sid = [
+        "thai3",
+        "english3",
+        "math3",
+        "science3",
+        "computer3",
+        "social3",
+        "pe3",
+        "art3",
+        "career3",
+        "guidance3",
+      ];
     } else if (croom === "4") {
-      sid = ["thai4", "english4", "math4", "science4", "computer4", "social4", "pe4", "art4", "career4", "guidance4"];
+      sid = [
+        "thai4",
+        "english4",
+        "math4",
+        "science4",
+        "computer4",
+        "social4",
+        "pe4",
+        "art4",
+        "career4",
+        "guidance4",
+      ];
     } else if (croom === "5") {
-      sid = ["thai5", "english5", "math5", "science5", "computer5", "social5", "pe5", "art5", "career5", "guidance5"];
+      sid = [
+        "thai5",
+        "english5",
+        "math5",
+        "science5",
+        "computer5",
+        "social5",
+        "pe5",
+        "art5",
+        "career5",
+        "guidance5",
+      ];
     } else if (croom === "6") {
-      sid = ["thai6", "english6", "math6", "science6", "computer6", "social6", "pe6", "art6", "career6", "guidance6"];
+      sid = [
+        "thai6",
+        "english6",
+        "math6",
+        "science6",
+        "computer6",
+        "social6",
+        "pe6",
+        "art6",
+        "career6",
+        "guidance6",
+      ];
     }
     try {
       await userRef.set({
@@ -68,7 +134,7 @@ export const createTeaDocument = async (user, additionalData) => {
 
   if (!snapshot.exists) {
     const { email } = user;
-    const { teaname, teanum, tealastname, croom, nroom, cid, sid, tel, room, } =
+    const { teaname, tealastname, teanum, croom, nroom, cid, tel, room, sid } =
       additionalData;
     var sj;
     if (sid === "thai1") {
@@ -202,9 +268,9 @@ export const createTeaDocument = async (user, additionalData) => {
         croom,
         nroom,
         cid,
-        sid,
         tel,
         room,
+        sid,
         uid: user.uid,
         sj: sj,
       });

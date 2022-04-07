@@ -28,10 +28,10 @@ class Createtea extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     const {
-      email,
-      password,
       teaname,
       tealastname,
+      email,
+      password,
       teanum,
       croom,
       nroom,
@@ -173,69 +173,76 @@ class Createtea extends Component {
               placeholder="วิชาที่สอน"
               required
             /> */}
-            <select className="form-select" aria-label="Default select example" name="sid" id={sid} onChange={this.handleChange}>
-              <option value="" selected>เลือกวิชาที่สอน</option>
-              <option value="11">ภาษาไทย ป.1</option>
-              <option value="21">ภาษาอังกฤษ ป.1</option>
-              <option value="31">คณิตศาสตร์ ป.1</option>
-              <option value="41">วิทยาศาสตร์ ป.1</option>
-              <option value="51">คอมพิวเตอร์ ป.1</option>
-              <option value="61">สังคมศึกษา ป.1</option>
-              <option value="71">สุขศึกษาและพลศึกษา ป.1</option>
-              <option value="81">ศิลปะ ป.1</option>
-              <option value="91">การงานอาชีพ ป.1</option>
-              <option value="101">แนะแนว ป.1</option>
-              <option value="12">ภาษาไทย ป.2</option>
-              <option value="22">ภาษาอังกฤษ ป.2</option>
-              <option value="32">คณิตศาสตร์ ป.2</option>
-              <option value="42">วิทยาศาสตร์ ป.2</option>
-              <option value="52">คอมพิวเตอร์ ป.2</option>
-              <option value="62">สังคมศึกษา ป.2</option>
-              <option value="72">สุขศึกษาและพลศึกษา ป.2</option>
-              <option value="82">ศิลปะ ป.2</option>
-              <option value="92">การงานอาชีพ ป.2</option>
-              <option value="102">แนะแนว ป.2</option>
-              <option value="13">ภาษาไทย ป.3</option>
-              <option value="23">ภาษาอังกฤษ ป.3</option>
-              <option value="33">คณิตศาสตร์ ป.3</option>
-              <option value="43">วิทยาศาสตร์ ป.3</option>
-              <option value="53">คอมพิวเตอร์ ป.3</option>
-              <option value="63">สังคมศึกษา ป.3</option>
-              <option value="73">สุขศึกษาและพลศึกษา ป.3</option>
-              <option value="83">ศิลปะ ป.3</option>
-              <option value="93">การงานอาชีพ ป.3</option>
-              <option value="103">แนะแนว ป.3</option>
-              <option value="14">ภาษาไทย ป.4</option>
-              <option value="24">ภาษาอังกฤษ ป.4</option>
-              <option value="34">คณิตศาสตร์ ป.4</option>
-              <option value="44">วิทยาศาสตร์ ป.4</option>
-              <option value="54">คอมพิวเตอร์ ป.4</option>
-              <option value="64">สังคมศึกษา ป.4</option>
-              <option value="74">สุขศึกษาและพลศึกษา ป.4</option>
-              <option value="84">ศิลปะ ป.4</option>
-              <option value="94">การงานอาชีพ ป.4</option>
-              <option value="104">แนะแนว ป.4</option>
-              <option value="15">ภาษาไทย ป.5</option>
-              <option value="25">ภาษาอังกฤษ ป.5</option>
-              <option value="35">คณิตศาสตร์ ป.5</option>
-              <option value="45">วิทยาศาสตร์ ป.5</option>
-              <option value="55">คอมพิวเตอร์ ป.5</option>
-              <option value="65">สังคมศึกษา ป.5</option>
-              <option value="75">สุขศึกษาและพลศึกษา ป.5</option>
-              <option value="85">ศิลปะ ป.5</option>
-              <option value="95">การงานอาชีพ ป.5</option>
-              <option value="105">แนะแนว ป.5</option>
-              <option value="16">ภาษาไทย ป.6</option>
-              <option value="26">ภาษาอังกฤษ ป.6</option>
-              <option value="36">คณิตศาสตร์ ป.6</option>
-              <option value="46">วิทยาศาสตร์ ป.6</option>
-              <option value="56">คอมพิวเตอร์ ป.6</option>
-              <option value="66">สังคมศึกษา ป.6</option>
-              <option value="76">สุขศึกษาและพลศึกษา ป.6</option>
-              <option value="86">ศิลปะ ป.6</option>
-              <option value="96">การงานอาชีพ ป.6</option>
-              <option value="106">แนะแนว ป.6</option>
-              
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              name="sid"
+              id={sid}
+              onChange={this.handleChange}
+            >
+              <option value="" selected>
+                เลือกวิชาที่สอน
+              </option>
+              <option value="thai1">ภาษาไทย ป.1</option>
+              <option value="english1">ภาษาอังกฤษ ป.1</option>
+              <option value="math1">คณิตศาสตร์ ป.1</option>
+              <option value="science1">วิทยาศาสตร์ ป.1</option>
+              <option value="computer1">คอมพิวเตอร์ ป.1</option>
+              <option value="social1">สังคมศึกษา ป.1</option>
+              <option value="pe1">สุขศึกษาและพลศึกษา ป.1</option>
+              <option value="art1">ศิลปะ ป.1</option>
+              <option value="career1">การงานอาชีพ ป.1</option>
+              <option value="guidance1">แนะแนว ป.1</option>
+              <option value="thai2">ภาษาไทย ป.2</option>
+              <option value="english2">ภาษาอังกฤษ ป.2</option>
+              <option value="math2">คณิตศาสตร์ ป.2</option>
+              <option value="science2">วิทยาศาสตร์ ป.2</option>
+              <option value="computer2">คอมพิวเตอร์ ป.2</option>
+              <option value="social2">สังคมศึกษา ป.2</option>
+              <option value="pe2">สุขศึกษาและพลศึกษา ป.2</option>
+              <option value="art2">ศิลปะ ป.2</option>
+              <option value="career2">การงานอาชีพ ป.2</option>
+              <option value="guidance2">แนะแนว ป.2</option>
+              <option value="thai3">ภาษาไทย ป.3</option>
+              <option value="english3">ภาษาอังกฤษ ป.3</option>
+              <option value="math3">คณิตศาสตร์ ป.3</option>
+              <option value="science3">วิทยาศาสตร์ ป.3</option>
+              <option value="computer3">คอมพิวเตอร์ ป.3</option>
+              <option value="social3">สังคมศึกษา ป.3</option>
+              <option value="pe3">สุขศึกษาและพลศึกษา ป.3</option>
+              <option value="art3">ศิลปะ ป.3</option>
+              <option value="career3">การงานอาชีพ ป.3</option>
+              <option value="guidance3">แนะแนว ป.3</option>
+              <option value="thai4">ภาษาไทย ป.4</option>
+              <option value="english4">ภาษาอังกฤษ ป.4</option>
+              <option value="math4">คณิตศาสตร์ ป.4</option>
+              <option value="science4">วิทยาศาสตร์ ป.4</option>
+              <option value="computer4">คอมพิวเตอร์ ป.4</option>
+              <option value="social4">สังคมศึกษา ป.4</option>
+              <option value="pe4">สุขศึกษาและพลศึกษา ป.4</option>
+              <option value="art4">ศิลปะ ป.4</option>
+              <option value="career4">การงานอาชีพ ป.4</option>
+              <option value="guidance4">แนะแนว ป.4</option>
+              <option value="thai5">ภาษาไทย ป.5</option>
+              <option value="english5">ภาษาอังกฤษ ป.5</option>
+              <option value="math5">คณิตศาสตร์ ป.5</option>
+              <option value="science5">วิทยาศาสตร์ ป.5</option>
+              <option value="computer5">คอมพิวเตอร์ ป.5</option>
+              <option value="social5">สังคมศึกษา ป.5</option>
+              <option value="pe5">สุขศึกษาและพลศึกษา ป.5</option>
+              <option value="art5">ศิลปะ ป.5</option>
+              <option value="career5">การงานอาชีพ ป.5</option>
+              <option value="guidance5">แนะแนว ป.5</option>
+              <option value="thai6">ภาษาไทย ป.6</option>
+              <option value="english6">ภาษาอังกฤษ ป.6</option>
+              <option value="math6">คณิตศาสตร์ ป.6</option>
+              <option value="science6">วิทยาศาสตร์ ป.6</option>
+              <option value="computer6">คอมพิวเตอร์ ป.6</option>
+              <option value="social6">สังคมศึกษา ป.6</option>
+              <option value="pe6">สุขศึกษาและพลศึกษา ป.6</option>
+              <option value="art6">ศิลปะ ป.6</option>
+              <option value="career6">การงานอาชีพ ป.6</option>
+              <option value="guidance6">แนะแนว ป.6</option>
             </select>
             <input
               type="name"

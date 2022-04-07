@@ -27,6 +27,7 @@ const ReportScore = () => {
             { label: "cid", key: cid },
             { label: "croom", key: croom },
           ];
+          console.log("data",userData);
           const csvReport = {
             filename: "userReport.csv",
             headers: headers,

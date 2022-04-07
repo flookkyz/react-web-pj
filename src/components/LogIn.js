@@ -1,23 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "./Auth";
 import firebaseConfig from "../config";
 import { FaUserAlt } from "react-icons/fa";
 import { FaKey } from "react-icons/fa";
 import "./LogIn.css";
+import { Alert } from "react-bootstrap";
+
+// import Swal from "sweetalert2";
 
 const LogIn = () => {
+  const [error, setError] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const { email, password } = e.target.elements;
 
     try {
+      setError("");
       firebaseConfig
         .auth()
         .signInWithEmailAndPassword(email.value, password.value);
     } catch (error) {
-      alert(error);
+      setError("fail");
     }
   };
   const { currentUser } = useContext(AuthContext);
@@ -36,6 +41,7 @@ const LogIn = () => {
                 <br />
                 <div className="text-center">
                   <h1 className="logotext">TIME ATTENDANCE</h1>
+                  {error && <Alert variant="danger">{error}</Alert>}
                 </div>
               </div>
               <br />

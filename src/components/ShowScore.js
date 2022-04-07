@@ -50,6 +50,8 @@ class ShowScore extends Component {
     });
   };
 
+  
+
   render() {
     return (
       <>

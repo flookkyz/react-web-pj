@@ -1,71 +1,50 @@
-import React, { Component } from "react";
-import firebase from "firebase";
+import React, { useState, useEffect } from "react";
+import firebase from "../config";
+import "./Allpage.css";
 import { CSVLink } from "react-csv";
 
-class ReportScore extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      key: "",
-      
-    };
-    console.log("##state",this.state.key)
-  }
-
-  exportcsv  ()  {
-    firebase.auth().onAuthStateChanged((user) => {
-      const uid = user.uid;
-      firebase
-        .firestore()
-        .collection("teachers")
-        .doc(uid)
-        .get()
-        .then((documentSnapshot) => {
-          firebase
-            .firestore()
-            .collection("students")
-            .doc(this.state.key)
-            .collection(`${documentSnapshot.data().sj}`)
-            .get()
-            .then((userSnapshot) => {
-              console.log("##key", this.state.key);
-              let list = [];
-              userSnapshot.forEach((doc) => {
-                console.log("##Each", userSnapshot.forEach(doc));
-                const { score, note } = doc.data();
-                list.push({
-                  usersID: doc.id,
-                  score: score,
-                  note: note,
-                });
-              });
-
-              const headers = [
-                { label: "User", key: "usersID" },
-                { label: "note", key: "note" },
-                { label: "score", key: "score" },
-              ];
-
-              const csvReport = {
-                filename: "userReport.csv",
-                headers: headers,
-                data: list,
-              };
-            });
+const ReportScore = () => {
+  const [data, setData] = useState([]);
+  // const [id, setID] = useState("");
+  // const list = [];
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("students")
+      .get()
+      .then((userSnapshot) => {
+        const usersData = [];
+        userSnapshot.forEach((doc) => {
+          const { cid, croom } = doc.data();
+          const userData ={
+            usersID: doc.id,
+            cid: cid,
+            croom: croom,
+          };
+          const headers = [
+            // here all the keys give undefined.
+            { label: "User", key: doc.id },
+            { label: "cid", key: cid },
+            { label: "croom", key: croom },
+          ];
+          const csvReport = {
+            filename: "userReport.csv",
+            headers: headers,
+            data: userData,
+            // also my data useState is undefined, although it holds values and i can see them in my table
+          };
+          usersData.push(csvReport);
         });
-    });
-  };
-  render() {
-    return (
-      <>
-        <h1>test</h1>
-      </>
-    );
-  }
-}
+        setData(usersData);
+      });
+      
+  }, [],);
+  
+  
+
+  return <CSVLink {...data}>Export</CSVLink>;
+};
 
 export default ReportScore;
 
-{
-  /* <CSVLink {...data}>Export</CSVLink>; */
-}
+

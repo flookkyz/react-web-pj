@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import firebase from "../config";
 import DashBoard from "./Dashboard";
 import "./Allpage.css";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 
 class ShowScore extends Component {
   constructor(props) {
@@ -59,6 +60,13 @@ class ShowScore extends Component {
           <DashBoard />
         </header>
         <br />
+        <br />
+        <div class="position-absolute top-10 start-0">
+                &nbsp;&nbsp;&nbsp;
+                <Link to={`/score`}>
+                  <BsFillArrowLeftCircleFill className="iconback" />
+                </Link>
+              </div>
         <div className="container text-center">
           <div className="d-flex justify-content-center mt-3">
             <span className="text text-center">
@@ -67,10 +75,11 @@ class ShowScore extends Component {
           </div>
           <br />
           <div className="float-end">
+          <Link to={`/reportscore/${this.props.match.params.id}`}>
             <button type="button" className="btn btn-outline-warning bt">
               ดาวน์โหลดคะแนน
             </button>
-
+          </Link>
             <br />
             <br />
           </div>

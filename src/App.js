@@ -52,7 +52,7 @@ function App() {
           <Route path="/addscore/:id" component={EditScore} />
           <Route path="/updateclass" component={QRCode} />
           <Route path="/showscore/:id" component={ShowScore} />
-          <Route path="/reportscore/:id" component={ReportScore} />
+          <Route path="/reportscore/:ids" component={ReportScore} />
           <Route path="/rescore/:uid/:id" component={ReScore} />
           <Route component={Pagenotfound} />
         </Switch>

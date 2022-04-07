@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import firebase from "../config";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Create.css";
 import Swal from "sweetalert2";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 
 class ReScore extends Component {
   constructor(props) {
@@ -119,23 +120,18 @@ class ReScore extends Component {
 
   render() {
     return (
+      <>
+      <div class="position-absolute top-10 start-0">
+          &nbsp;&nbsp;&nbsp;
+          <Link to={`/showscore/${this.props.match.params.uid}`}>
+            <BsFillArrowLeftCircleFill className="iconbacktop" />
+          </Link>
+        </div>
       <form className="signup-login" onSubmit={this.onSubmit}>
         <div className="container text-center">
           <div className="panel panel-default">
             <div className="panel-body">
               <br />
-              <br />
-              <label className="mx-3" htmlFor="">
-                กรอกครั้งที่งาน :
-              </label>
-              <input
-                type="text"
-                name="jobnum"
-                value={this.state.key}
-                onChange={this.onChange}
-                placeholder="งานครั้งที่ 1 กรอก 1"
-                required
-              />
               <br />
               <label className="mx-4" htmlFor="">
                 กรอกคะแนน :
@@ -167,6 +163,7 @@ class ReScore extends Component {
           </div>
         </div>
       </form>
+      </>
     );
   }
 }

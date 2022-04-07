@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import firebase from "../config";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Create.css";
 import Swal from "sweetalert2";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 
 class EditTea extends Component {
   constructor(props) {
@@ -91,6 +92,13 @@ class EditTea extends Component {
 
   render() {
     return (
+      <>
+      <div class="position-absolute top-10 start-0">
+          &nbsp;&nbsp;&nbsp;
+          <Link to={`/showtea/${this.props.match.params.id}`}>
+            <BsFillArrowLeftCircleFill className="iconbacktop" />
+          </Link>
+        </div>
       <form className="signup-login" onSubmit={this.onSubmit}>
         <h2 className="text-center">แก้ไขคุณครู</h2>
         <div class="form-group ">
@@ -166,6 +174,7 @@ class EditTea extends Component {
           </button>
         </div>
       </form>
+      </>
     );
   }
 }

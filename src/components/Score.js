@@ -33,12 +33,13 @@ class Score extends Component {
   onCollectionUpdate = (querySnapshot) => {
     const user = [];
     querySnapshot.forEach((doc) => {
-      const { stunum, stuname, croom, nroom } = doc.data();
+      const { stunum, stuname, stulastname, croom, nroom } = doc.data();
       user.push({
         key: doc.id,
         doc, // DocumentSnapshot
         stunum,
         stuname,
+        stulastname,
         croom,
         nroom,
       });
@@ -76,12 +77,12 @@ class Score extends Component {
                   {this.state.user.map((user) => (
                     <tr>
                       <td>{user.stunum}</td>
-                      <td>{user.stuname}</td>
+                      <td>{user.stuname} {user.stulastname}</td>
                       <td>
                         {user.croom}/{user.nroom}
                       </td>
                       <td>
-                        <Link to={`/reportscore/${user.key}`}>
+                        <Link to={`/showscore/${user.key}`}>
                           <button
                             type="button"
                             className="btn btn-outline-warning bt"

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import firebase from "../config";
 import { Link } from "react-router-dom";
 import DashBoard from "./Dashboard";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 
 class ShowTea extends Component {
   constructor(props) {
@@ -54,7 +55,14 @@ class ShowTea extends Component {
         <div class="container text-center">
           <div class="panel panel-default">
             <div class="panel-body">
-              <br /><br />
+              <br />
+              <br />
+              <div class="position-absolute top-10 start-0">
+                &nbsp;&nbsp;&nbsp;
+                <Link to={`/teacher`}>
+                  <BsFillArrowLeftCircleFill className="iconback" />
+                </Link>
+              </div>
               <dl>
                 <dt>รหัสคุณครู : </dt>
                 <dd>{this.state.teachers.teanum}</dd>
@@ -65,8 +73,11 @@ class ShowTea extends Component {
                 <dt>ห้อง :</dt>
                 <dd>{this.state.teachers.nroom}</dd>
               </dl>
-              <Link to={`/edittea/${this.state.key}`} class="btn btn-success bt">
-              แก้ไข
+              <Link
+                to={`/edittea/${this.state.key}`}
+                class="btn btn-success bt"
+              >
+                แก้ไข
               </Link>
               &nbsp;
               <button

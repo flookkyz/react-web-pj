@@ -102,3 +102,30 @@ body {
 .tooltip-inner {
   max-width: 700px;
 }
+
+.iconback {
+  width: 40px;
+  height: 40px;
+  color: #cc5353;
+  margin-top: -45px;
+}
+.iconback:hover {
+  width: 40px;
+  height: 40px;
+  color: green;
+  margin-top: -45px;
+}
+
+.iconbacktop {
+  width: 40px;
+  height: 40px;
+  color: #cc5353;
+  margin-top: -170px;
+}
+
+.iconbacktop:hover {
+  width: 40px;
+  height: 40px;
+  color: green;
+  margin-top: -170px;
+}

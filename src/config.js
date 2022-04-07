@@ -20,7 +20,7 @@ export const storage = firebase.storage();
 export const createStuDocument = async (user, additionalData) => {
   if (!user) return;
 
-  const userRef = firestore.collection("Students").doc(`${user.uid}`);
+  const userRef = firestore.collection("students").doc(`${user.uid}`);
 
   const snapshot = await userRef.get();
 

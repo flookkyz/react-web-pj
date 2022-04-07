@@ -4,7 +4,6 @@ import firebaseConfig from "../config";
 import DashBoard from "./Dashboard";
 import "./Create.css";
 import Swal from "sweetalert2";
-import firebase from "firebase";
 
 class CreateStu extends Component {
   state = {
@@ -65,27 +64,6 @@ class CreateStu extends Component {
       cid: "",
     });
   };
-
-  state = {
-    disabled: true,
-  };
-
-  showbtn = () => {
-    firebase.auth().onAuthStateChanged((user)=>{
-      const uid = user.uid;
-      firebase.firestore().collection().doc(uid).get().then((documentSnapshot) =>{
-        if (documentSnapshot.data().cid === "admin") {
-          this.setState({
-            disabled: false,
-          });
-        } else {
-          this.setState({
-            disabled: true,
-          })
-        }
-      })
-    })
-  }
 
   render() {
     const {email, password, stuname, stulastname, stunum, croom, nroom, cid } = this.state;
@@ -165,7 +143,7 @@ class CreateStu extends Component {
               required
               pattern="[1-6]{2}"
             />
-            <button disabled={this.state.disabled} className="btsi">เพิ่มนักเรียนใหม่</button>
+            <button className="btsi">เพิ่มนักเรียนใหม่a</button>
           </form>
         </div>
       </>

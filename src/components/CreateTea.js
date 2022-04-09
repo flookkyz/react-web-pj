@@ -174,8 +174,9 @@ class Createtea extends Component {
               required
             /> */}
             <select
-              className="form-select"
+              className="form-select selectpicker"
               aria-label="Default select example"
+              // multiple 
               name="sid"
               id={sid}
               onChange={this.handleChange}

@@ -9,6 +9,7 @@ class CreateStu extends Component {
   state = {
     stuname: "",
     stulastname: "",
+    stuparent: "",
     email: "",
     password: "",
     stunum: "",
@@ -25,7 +26,7 @@ class CreateStu extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password, stuname, stulastname, stunum, croom, nroom, cid } =
+    const { email, password, stuname, stulastname, stuparent, stunum, croom, nroom, cid } =
       this.state;
     try {
       console.log(stuname, stulastname);
@@ -36,6 +37,7 @@ class CreateStu extends Component {
       await createStuDocument(user, {
         stuname,
         stulastname,
+        stuparent,
         stunum,
         croom,
         nroom,
@@ -58,6 +60,7 @@ class CreateStu extends Component {
     this.setState({
       stuname: "",
       stulastname: "",
+      stuparent: "",
       stunum: "",
       croom: "",
       nroom: "",
@@ -66,7 +69,7 @@ class CreateStu extends Component {
   };
 
   render() {
-    const {email, password, stuname, stulastname, stunum, croom, nroom, cid } = this.state;
+    const {email, password, stuname, stulastname, stuparent, stunum, croom, nroom, cid } = this.state;
     return (
       <>
         <header>
@@ -109,6 +112,14 @@ class CreateStu extends Component {
             />
             <input
               type="text"
+              name="stuparent"
+              value={stuparent}
+              onChange={this.handleChange}
+              placeholder="ชื่อ - นามสกุลผู้ปกครอง"
+              required
+            />
+            <input
+              type="text"
               name="stunum"
               value={stunum}
               onChange={this.handleChange}
@@ -143,7 +154,7 @@ class CreateStu extends Component {
               required
               pattern="[1-6]{2}"
             />
-            <button className="btsi">เพิ่มนักเรียนใหม่a</button>
+            <button className="btsi">เพิ่มนักเรียนใหม่</button>
           </form>
         </div>
       </>

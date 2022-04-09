@@ -26,7 +26,7 @@ export const createStuDocument = async (user, additionalData) => {
 
   if (!snapshot.exists) {
     const { email } = user;
-    const { stuname, stunum, stulastname, croom, nroom, cid } = additionalData;
+    const { stuname, stunum, stulastname, stuparent, croom, nroom, cid } = additionalData;
     var sid;
     if (croom === "1") {
       sid = [
@@ -113,6 +113,7 @@ export const createStuDocument = async (user, additionalData) => {
         email,
         stunum,
         stulastname,
+        stuparent,
         croom,
         nroom,
         cid,

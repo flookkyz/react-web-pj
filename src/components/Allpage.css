@@ -129,3 +129,9 @@ body {
   color: green;
   margin-top: -170px;
 }
+
+.tabtn {
+  width: 30px;
+  height: 30px;
+  color: #cc5353;
+}

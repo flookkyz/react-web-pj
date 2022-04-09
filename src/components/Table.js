@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import firebase from "../config";
 import DashBoard from "./Dashboard";
 import "./Allpage.css";
+import { IoIosArrowDroprightCircle } from "react-icons/io";
+import { IoIosArrowDropleftCircle } from "react-icons/io";
 
 class Table extends Component {
   constructor(props) {
@@ -10,12 +12,15 @@ class Table extends Component {
     this.ref = firebase
       .firestore()
       .collection("tables")
-    //   .where("teanum", "!=", "a")
+      //   .where("teanum", "!=", "a")
       .orderBy("cid", "asc");
     this.unsubscribe = null;
     this.state = {
       user: [],
+      filterUser: [],
+      page: 1,
     };
+    
   }
 
   onCollectionUpdate = (querySnapshot) => {
@@ -31,10 +36,46 @@ class Table extends Component {
     this.setState({
       user,
     });
+    this.onUpdate();
   };
   componentDidMount() {
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
   }
+
+  onUpdate = () => {
+    let start = (this.state.page - 1) * 4;
+    console.log("start Page => ", start);
+    this.setState({
+      filterUser: this.state.user.slice(start, Number(start) + Number(4)),
+    });
+    console.log("filter => ", this.state.filterUser);
+  };
+
+  onNextPage = () => {
+    this.setState({
+      page: this.state.page + 1,
+    });
+
+    if (this.state.page >= Math.ceil(this.state.user.length / 4)) {
+      this.setState({
+        page: Math.ceil(this.state.user.length / 4),
+      });
+    }
+    this.onUpdate();
+  };
+
+  onPrevPage = () => {
+    this.setState({
+      page: this.state.page - 1,
+    });
+
+    if (this.state.page <= 1) {
+      this.setState({
+        page: 1,
+      });
+    }
+    this.onUpdate();
+  };
 
   render() {
     return (
@@ -58,11 +99,9 @@ class Table extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.user.map((user) => (
+                  {this.state.filterUser.map((user) => (
                     <tr>
-                      <td>
-                        {user.croom}
-                      </td>
+                      <td>{user.croom}</td>
                       <td>
                         <Link to={`/showtable/${user.key}`}>
                           <button
@@ -78,6 +117,21 @@ class Table extends Component {
                 </tbody>
               </table>
             </div>
+          </div>
+          <div className="float-end">
+            <IoIosArrowDropleftCircle
+              className="tabtn mx-2"
+              onClick={this.onPrevPage}
+            >
+              PrevPage
+            </IoIosArrowDropleftCircle>
+            {this.state.page}
+            <IoIosArrowDroprightCircle
+              className="tabtn mx-2"
+              onClick={this.onNextPage}
+            >
+              nextPage
+            </IoIosArrowDroprightCircle>
           </div>
         </div>
       </>

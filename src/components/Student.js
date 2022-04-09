@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import firebase from "../config";
 import DashBoard from "./Dashboard";
 import "./Allpage.css";
+import { IoIosArrowDroprightCircle } from "react-icons/io";
+import { IoIosArrowDropleftCircle } from "react-icons/io";
 
 class Student extends Component {
   constructor(props) {
     super(props);
+
     firebase.auth().onAuthStateChanged((user) => {
       const uid = user.uid;
       firebase
@@ -40,11 +43,14 @@ class Student extends Component {
 
     this.state = {
       user: [],
+      filterUser: [],
+      page: 1,
     };
   }
 
   onCollectionUpdate = (querySnapshot) => {
     const user = [];
+
     querySnapshot.forEach((doc) => {
       const { stunum, stuname, stulastname, croom, nroom } = doc.data();
       user.push({
@@ -57,12 +63,47 @@ class Student extends Component {
         nroom,
       });
     });
+
     this.setState({
       user,
     });
+    this.onUpdate();
   };
 
-  
+  onUpdate = () => {
+    let start = (this.state.page - 1) * 10;
+    console.log("start Page => ", start);
+    this.setState({
+      filterUser: this.state.user.slice(start, Number(start) + Number(10)),
+    });
+    console.log("filter => ", this.state.filterUser);
+  };
+
+  onNextPage = () => {
+    this.setState({
+      page: this.state.page + 1,
+    });
+
+    if (this.state.page >= Math.ceil(this.state.user.length / 10)) {
+      this.setState({
+        page: Math.ceil(this.state.user.length / 10),
+      });
+    }
+    this.onUpdate();
+  };
+
+  onPrevPage = () => {
+    this.setState({
+      page: this.state.page - 1,
+    });
+
+    if (this.state.page <= 1) {
+      this.setState({
+        page: 1,
+      });
+    }
+    this.onUpdate();
+  };
 
   render() {
     return (
@@ -91,19 +132,21 @@ class Student extends Component {
                     <th>รหัสนักเรียน</th>
                     <th>ชื่อ - นามสกุล</th>
                     <th>ชั้นปี</th>
-                    
+
                     <th>จัดการ</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.user.map((user) => (
+                  {this.state.filterUser.map((user) => (
                     <tr>
                       <td>{user.stunum}</td>
-                      <td>{user.stuname} {user.stulastname}</td>
+                      <td>
+                        {user.stuname} {user.stulastname}
+                      </td>
                       <td>
                         {user.croom}/{user.nroom}
                       </td>
-                      
+
                       <td>
                         <Link to={`/showstu/${user.key}`}>
                           <button
@@ -120,11 +163,25 @@ class Student extends Component {
               </table>
             </div>
           </div>
+          <div className="float-end">
+            <IoIosArrowDropleftCircle
+              className="tabtn mx-2"
+              onClick={this.onPrevPage}
+            >
+              PrevPage
+            </IoIosArrowDropleftCircle>
+            {this.state.page}
+            <IoIosArrowDroprightCircle
+              className="tabtn mx-2"
+              onClick={this.onNextPage}
+            >
+              nextPage
+            </IoIosArrowDroprightCircle>
+          </div>
         </div>
       </>
     );
   }
 }
-
 
 export default Student;

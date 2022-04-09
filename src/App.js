@@ -25,6 +25,7 @@ import QRCode from "./components/QRCode";
 import ReportScore from "./components/ReportScore";
 import ShowScore from "./components/ShowScore";
 import ReScore from "./components/ReScore";
+import Test from "./components/test"
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
           <Route path="/showscore/:id" component={ShowScore} />
           <Route path="/reportscore/:ids" component={ReportScore} />
           <Route path="/rescore/:uid/:id" component={ReScore} />
+          <Route path="/test" component={Test} />
           <Route component={Pagenotfound} />
         </Switch>
       </Router>

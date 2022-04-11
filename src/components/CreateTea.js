@@ -41,7 +41,7 @@ class Createtea extends Component {
       sid,
     } = this.state;
     try {
-      console.log(teaname, teanum);
+      console.log(email, teanum);
       const { user } = await auth.createUserWithEmailAndPassword(
         email,
         password
@@ -114,6 +114,7 @@ class Createtea extends Component {
               onChange={this.handleChange}
               placeholder="อีเมลคุณครูเพื่อใช้เข้าสู่ระบบ (ตัวอย่าง => teacherรหัสคุณครู@gmail.com)"
               required
+              attern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
             />
             <input
               type="password"

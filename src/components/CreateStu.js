@@ -85,6 +85,7 @@ class CreateStu extends Component {
               onChange={this.handleChange}
               placeholder="อีเมลนักเรียนเพื่อใช้เข้าสู่ระบบ (ตัวอย่าง => รหัสนักเรียน@gmail.com)"
               required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
             />
             <input
               type="password"

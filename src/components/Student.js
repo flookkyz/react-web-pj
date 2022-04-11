@@ -40,12 +40,13 @@ class Student extends Component {
         .orderBy("stunum", "asc");
       this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
     });
-
     this.state = {
       user: [],
       filterUser: [],
-      page: 1,
     };
+
+    this.Page = 1;
+    this.onUpdate();
   }
 
   onCollectionUpdate = (querySnapshot) => {
@@ -71,7 +72,8 @@ class Student extends Component {
   };
 
   onUpdate = () => {
-    let start = (this.state.page - 1) * 10;
+    console.log("onUpdate Page : ",this.Page)
+    let start = (this.Page - 1) * 10;
     console.log("start Page => ", start);
     this.setState({
       filterUser: this.state.user.slice(start, Number(start) + Number(10)),
@@ -80,27 +82,20 @@ class Student extends Component {
   };
 
   onNextPage = () => {
-    this.setState({
-      page: this.state.page + 1,
-    });
-
-    if (this.state.page >= Math.ceil(this.state.user.length / 10)) {
-      this.setState({
-        page: Math.ceil(this.state.user.length / 10),
-      });
+    this.Page = this.Page + 1;
+   
+    console.log("onNextPage Page : ",this.Page)
+  
+    if (this.Page >= Math.ceil(this.state.user.length / 10)) {
+      this.Page = Math.ceil(this.state.user.length / 10)
     }
     this.onUpdate();
   };
 
   onPrevPage = () => {
-    this.setState({
-      page: this.state.page - 1,
-    });
-
-    if (this.state.page <= 1) {
-      this.setState({
-        page: 1,
-      });
+    this.Page = this.Page - 1;
+    if (this.Page <= 1) {
+      this.Page = 1;
     }
     this.onUpdate();
   };
@@ -170,7 +165,7 @@ class Student extends Component {
             >
               PrevPage
             </IoIosArrowDropleftCircle>
-            {this.state.page}
+            {this.Page}
             <IoIosArrowDroprightCircle
               className="tabtn mx-2"
               onClick={this.onNextPage}

@@ -19,7 +19,7 @@ class ShowStu extends Component {
     const ref = firebase
       .firestore()
       .collection("students")
-      .doc(this.props.match.params.id);
+      .doc(this.props.match.params.ids);
 
     ref
       .get()
@@ -128,14 +128,19 @@ class ShowStu extends Component {
               <br />
               <Link
                 to={`/editstu/${this.state.key}`}
-                class="btn btn-success bt"
+                className="btn btn-success bt"
               >
                 แก้ไข
               </Link>
-              &nbsp;
+              <Link
+                to={`/reporttime/${this.state.key}`}
+                className="btn btn-success bt mx-3"
+              >
+                ดาวน์โหลดการมาเรียน
+              </Link>
               <button
                 onClick={this.delete.bind(this, this.state.key)}
-                class="btn btn-danger btr"
+                className="btn btn-danger btr"
               >
                 ลบ
               </button>

@@ -18,9 +18,9 @@ class Table extends Component {
     this.state = {
       user: [],
       filterUser: [],
-      page: 1,
+      
     };
-    
+    this.Page = 1;
   }
 
   onCollectionUpdate = (querySnapshot) => {
@@ -43,7 +43,7 @@ class Table extends Component {
   }
 
   onUpdate = () => {
-    let start = (this.state.page - 1) * 4;
+    let start = (this.Page - 1) * 4;
     console.log("start Page => ", start);
     this.setState({
       filterUser: this.state.user.slice(start, Number(start) + Number(4)),
@@ -52,27 +52,20 @@ class Table extends Component {
   };
 
   onNextPage = () => {
-    this.setState({
-      page: this.state.page + 1,
-    });
-
-    if (this.state.page >= Math.ceil(this.state.user.length / 4)) {
-      this.setState({
-        page: Math.ceil(this.state.user.length / 4),
-      });
+    this.Page = this.Page + 1;
+   
+    console.log("onNextPage Page : ",this.Page)
+  
+    if (this.Page >= Math.ceil(this.state.user.length / 4)) {
+      this.Page = Math.ceil(this.state.user.length / 4)
     }
     this.onUpdate();
   };
 
   onPrevPage = () => {
-    this.setState({
-      page: this.state.page - 1,
-    });
-
-    if (this.state.page <= 1) {
-      this.setState({
-        page: 1,
-      });
+    this.Page = this.Page - 1;
+    if (this.Page <= 1) {
+      this.Page = 1;
     }
     this.onUpdate();
   };
@@ -125,7 +118,7 @@ class Table extends Component {
             >
               PrevPage
             </IoIosArrowDropleftCircle>
-            {this.state.page}
+            {this.Page}
             <IoIosArrowDroprightCircle
               className="tabtn mx-2"
               onClick={this.onNextPage}

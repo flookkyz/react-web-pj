@@ -6,7 +6,28 @@ import "./LogIn.css";
 import Swal from "sweetalert2";
 
 class Student extends Component {
-  
+  test() {
+    firebase
+      .firestore()
+      .collection("students")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.docs.forEach((doc) => {
+          firebase
+            .firestore()
+            .collection("students")
+            .doc(doc.data().uid)
+            .collection("test")
+            .get()
+            .toPromise()
+            .then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                doc.ref.delete();
+              });
+            });
+        });
+      });
+  }
   updateclass() {
     Swal.fire({
       title: "คุณแน่ใจแล้วที่จะอัปเดทชั้นปี ?",

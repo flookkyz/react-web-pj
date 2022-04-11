@@ -133,7 +133,7 @@ class ShowStu extends Component {
                 แก้ไข
               </Link>
               <Link
-                to={`/reporttime/${this.state.key}`}
+                to={`/reporttime/${this.state.key}/${this.state.students.stuname}`}
                 className="btn btn-success bt mx-3"
               >
                 ดาวน์โหลดการมาเรียน

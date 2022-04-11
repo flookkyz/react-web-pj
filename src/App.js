@@ -53,10 +53,10 @@ function App() {
           <Route path="/score" component={Score} />
           <Route path="/addscore/:id" component={EditScore} />
           <Route path="/updateclass" component={QRCode} />
-          <Route path="/showscore/:id" component={ShowScore} />
-          <Route path="/reportscore/:ids" component={ReportScore} />
+          <Route path="/showscore/:id/:name" component={ShowScore} />
+          <Route path="/reportscore/:ids/:name" component={ReportScore} />
           <Route path="/rescore/:uid/:id" component={ReScore} />
-          <Route path="/reporttime/:ids" component={ReportTime} />
+          <Route path="/reporttime/:ids/:name" component={ReportTime} />
           <Route path="/test" component={Test} />
           <Route component={Pagenotfound} />
         </Switch>

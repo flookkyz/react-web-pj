@@ -19,7 +19,7 @@ export default function App() {
       ref.getDownloadURL().then((url) => {
         setFile(null);
         setURL(url);
-        firebase.firestore().collection("tables").doc("tb11").update({
+        firebase.firestore().collection("tables").doc(this.props.match.params.id).update({
           urlPic: url,
         });
       });

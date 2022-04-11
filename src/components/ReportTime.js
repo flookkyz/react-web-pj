@@ -8,7 +8,7 @@ import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const ReportTime = () => {
-  let { ids } = useParams();
+  let { ids,name } = useParams();
   const [data, setData] = useState([]);
   const [id, setID] = useState("");
   const list = [];
@@ -37,7 +37,9 @@ const ReportTime = () => {
                   usersID: doc.id,
                   timecheck: timecheck,
                   state: state,
+                  ta: ''
                 });
+                
               });
               setData(list);
               console.log("####", list);
@@ -48,10 +50,11 @@ const ReportTime = () => {
   console.log("####test", list);
   const headers = [
     // here all the keys give undefined.
-    { label: "นักเรียน", key: "ids" },
-    { label: "นักเรียน", key: "usersID" },
+    {label: `${name}`, key: "ta"},
     { label: "วันที่", key: "timecheck" },
-    { label: "สถานะการมาเรียน", key: "state" },
+    { label: "จำนวนวันที่มาเรียน =>", key: "state" },
+    { label: "=COUNTIF(C2:C300,TRUE)", key: "ta" },
+    
   ];
   // setData(list);
   console.log("data", data);
@@ -87,7 +90,7 @@ const ReportTime = () => {
             className="btn btn-outline-warning bt"
             data={data}
             headers={headers}
-            filename={`${ids}.csv`}
+            filename={`${name}.csv`}
           >
             ดาวน์โหลดการมาเรียน
           </CSVLink>

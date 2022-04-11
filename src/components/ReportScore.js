@@ -8,7 +8,7 @@ import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const ReportScore = () => {
-  let { ids } = useParams();
+  let { ids, name } = useParams();
   const [data, setData] = useState([]);
   const [id, setID] = useState("");
   const list = [];
@@ -36,6 +36,7 @@ const ReportScore = () => {
                   usersID: doc.id,
                   score: score,
                   note: note,
+                  ta: "",
                 });
               });
               setData(list);
@@ -47,9 +48,12 @@ const ReportScore = () => {
   console.log("####test", list);
   const headers = [
     // here all the keys give undefined.
-    { label: "User", key: "usersID" },
-    { label: "score", key: "score" },
-    { label: "note", key: "note" },
+    { label: `${name}`, key: "ta" },
+    { label: "คะแนนรวม", key: "ta" },
+    { label: "=SUM(E2:E100)", key: "ta" },
+    { label: "ครั้งที่", key: "usersID" },
+    { label: "คะแนน", key: "score" },
+    { label: "รายละเอียด", key: "note" },
   ];
   // setData(list);
   console.log("data", data);
@@ -71,8 +75,8 @@ const ReportScore = () => {
         <div className="d-flex justify-content-center mt-3">
           <div class="position-absolute top-10 start-0">
             &nbsp;&nbsp;&nbsp;
-            <Link to={`/showscore/${ids}`}>
-            <BsFillArrowLeftCircleFill className="iconback" />
+            <Link to={`/showscore/${ids}/${name}`}>
+              <BsFillArrowLeftCircleFill className="iconback" />
             </Link>
           </div>
           <span className="text text-center">ดาวน์โหลดคะแนนนักเรียน</span>
@@ -83,7 +87,7 @@ const ReportScore = () => {
             className="btn btn-outline-warning bt"
             data={data}
             headers={headers}
-            filename={"ReportScore.csv"}
+            filename={`${name}.csv`}
           >
             ดาวน์โหลดคะแนน
           </CSVLink>

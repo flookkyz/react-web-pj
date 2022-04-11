@@ -75,7 +75,7 @@ class ShowScore extends Component {
           </div>
           <br />
           <div className="float-end">
-          <Link to={`/reportscore/${this.props.match.params.id}`}>
+          <Link to={`/reportscore/${this.props.match.params.id}/${this.props.match.params.name}`}>
             <button type="button" className="btn btn-outline-warning bt">
               ดาวน์โหลดคะแนน
             </button>

@@ -82,7 +82,7 @@ class Score extends Component {
                         {user.croom}/{user.nroom}
                       </td>
                       <td>
-                        <Link to={`/showscore/${user.key}`}>
+                        <Link to={`/showscore/${user.key}/${user.stuname}`}>
                           <button
                             type="button"
                             className="btn btn-outline-warning bt"

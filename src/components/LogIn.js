@@ -20,7 +20,7 @@ const LogIn = () => {
       setError("");
       firebaseConfig
         .auth()
-        .signInWithEmailAndPassword(email.value, password.value);
+        .signInWithEmailAndPassword(`${email.value}@gmail.com`, password.value);
     } catch (error) {
       setError("fail");
     }
@@ -51,7 +51,7 @@ const LogIn = () => {
                 <label htmlFor="email" className="from-label"></label>
                 <FaUserAlt className="fa lgicon" />
                 <input
-                  type="email"
+                  type="text"
                   name="email"
                   className="text-center inputtext rounded-pill"
                   placeholder="อีเมล"

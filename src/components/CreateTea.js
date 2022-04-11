@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { auth, createTeaDocument } from "../config";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 import DashBoard from "./Dashboard";
 import "./Create.css";
 import Swal from "sweetalert2";
@@ -16,12 +18,77 @@ class Createtea extends Component {
     cid: "",
     tel: "",
     room: "",
-    sid: "",
+    sid: [],
   };
+
+  options = [
+    { value: "thai1", label: "ภาษาไทย ป.1" },
+    { value: "english1", label: "ภาษาอังกฤษ ป.1" },
+    { value: "math1", label: "คณิตศาสตร์ ป.1" },
+    { value: "science1", label: "วิทยาศาสตร์ ป.1" },
+    { value: "computer1", label: "คอมพิวเตอร์ ป.1" },
+    { value: "social1", label: "สังคมศึกษา ป.1" },
+    { value: "pe1", label: "สุขศึกษาและพลศึกษา ป.1" },
+    { value: "art1", label: "ศิลปะ ป.1" },
+    { value: "career1", label: "การงานอาชีพ ป.1" },
+    { value: "guidance1", label: "แนะแนว ป.1" },
+    { value: "thai2", label: "ภาษาไทย ป.2" },
+    { value: "english2", label: "ภาษาอังกฤษ ป.2" },
+    { value: "math2", label: "คณิตศาสตร์ ป.2" },
+    { value: "science2", label: "วิทยาศาสตร์ ป.2" },
+    { value: "computer2", label: "คอมพิวเตอร์ ป.2" },
+    { value: "social2", label: "สังคมศึกษา ป.2" },
+    { value: "pe2", label: "สุขศึกษาและพลศึกษา ป.2" },
+    { value: "art2", label: "ศิลปะ ป.2" },
+    { value: "career2", label: "การงานอาชีพ ป.2" },
+    { value: "guidance2", label: "แนะแนว ป.2" },
+    { value: "thai3", label: "ภาษาไทย ป.3" },
+    { value: "english3", label: "ภาษาอังกฤษ ป.3" },
+    { value: "math3", label: "คณิตศาสตร์ ป.3" },
+    { value: "science3", label: "วิทยาศาสตร์ ป.3" },
+    { value: "computer3", label: "คอมพิวเตอร์ ป.3" },
+    { value: "social3", label: "สังคมศึกษา ป.3" },
+    { value: "pe3", label: "สุขศึกษาและพลศึกษา ป.3" },
+    { value: "art3", label: "ศิลปะ ป.3" },
+    { value: "career3", label: "การงานอาชีพ ป.3" },
+    { value: "guidance3", label: "แนะแนว ป.3" },
+    { value: "thai4", label: "ภาษาไทย ป.4" },
+    { value: "english4", label: "ภาษาอังกฤษ ป.4" },
+    { value: "math4", label: "คณิตศาสตร์ ป.4" },
+    { value: "science4", label: "วิทยาศาสตร์ ป.4" },
+    { value: "computer4", label: "คอมพิวเตอร์ ป.4" },
+    { value: "social4", label: "สังคมศึกษา ป.4" },
+    { value: "pe4", label: "สุขศึกษาและพลศึกษา ป.4" },
+    { value: "art4", label: "ศิลปะ ป.4" },
+    { value: "career4", label: "การงานอาชีพ ป.4" },
+    { value: "guidance4", label: "แนะแนว ป.4" },
+    { value: "thai5", label: "ภาษาไทย ป.5" },
+    { value: "english5", label: "ภาษาอังกฤษ ป.5" },
+    { value: "math5", label: "คณิตศาสตร์ ป.5" },
+    { value: "science5", label: "วิทยาศาสตร์ ป.5" },
+    { value: "computer5", label: "คอมพิวเตอร์ ป.5" },
+    { value: "social5", label: "สังคมศึกษา ป.5" },
+    { value: "pe5", label: "สุขศึกษาและพลศึกษา ป.5" },
+    { value: "art5", label: "ศิลปะ ป.5" },
+    { value: "career5", label: "การงานอาชีพ ป.5" },
+    { value: "guidance5", label: "แนะแนว ป.5" },
+    { value: "thai6", label: "ภาษาไทย ป.6" },
+    { value: "english6", label: "ภาษาอังกฤษ ป.6" },
+    { value: "math6", label: "คณิตศาสตร์ ป.6" },
+    { value: "science6", label: "วิทยาศาสตร์ ป.6" },
+    { value: "computer6", label: "คอมพิวเตอร์ ป.6" },
+    { value: "social6", label: "สังคมศึกษา ป.6" },
+    { value: "pe6", label: "สุขศึกษาและพลศึกษา ป.6" },
+    { value: "art6", label: "ศิลปะ ป.6" },
+    { value: "career6", label: "การงานอาชีพ ป.6" },
+    { value: "guidance6", label: "แนะแนว ป.6" },
+  ];
+
+  animatedComponents = makeAnimated();
 
   handleChange = (e) => {
     const { name, value } = e.target;
-
+    
     this.setState({ [name]: value });
   };
 
@@ -81,7 +148,7 @@ class Createtea extends Component {
       cid: "",
       tel: "",
       room: "",
-      sid: "",
+      sid: [],
     });
   };
 
@@ -166,18 +233,38 @@ class Createtea extends Component {
               placeholder="ห้องพักครู"
               required
             />
-            {/* <input
-              type="text"
-              name="sid"
-              value={sid}
+            <input
+              type="name"
+              name="croom"
+              value={croom}
               onChange={this.handleChange}
-              placeholder="วิชาที่สอน"
+              placeholder="ชั้นปี"
               required
-            /> */}
+              pattern="[1-6]{1}"
+            />
+            <input
+              type="name"
+              name="nroom"
+              value={nroom}
+              onChange={this.handleChange}
+              placeholder="ห้องเรียน"
+              required
+              pattern="[1-6]{1}"
+            />
+            <input
+              type="name"
+              name="cid"
+              value={cid}
+              onChange={this.handleChange}
+              placeholder="รหัสห้องเรียน (ตัวอย่าง ถ้าห้อง 1/1 ใส่ 11)"
+              required
+              pattern="[1-6]{2}"
+              title="กรุณากรอกตัวเลข 1 ถึง 6 จำนวน 2 ตัว"
+            />
             <select
               className="form-select selectpicker"
               aria-label="Default select example"
-              // multiple 
+              // multiple
               name="sid"
               id={sid}
               onChange={this.handleChange}
@@ -246,34 +333,6 @@ class Createtea extends Component {
               <option value="career6">การงานอาชีพ ป.6</option>
               <option value="guidance6">แนะแนว ป.6</option>
             </select>
-            <input
-              type="name"
-              name="croom"
-              value={croom}
-              onChange={this.handleChange}
-              placeholder="ชั้นปี"
-              required
-              pattern="[1-6]{1}"
-            />
-            <input
-              type="name"
-              name="nroom"
-              value={nroom}
-              onChange={this.handleChange}
-              placeholder="ห้องเรียน"
-              required
-              pattern="[1-6]{1}"
-            />
-            <input
-              type="name"
-              name="cid"
-              value={cid}
-              onChange={this.handleChange}
-              placeholder="รหัสห้องเรียน (ตัวอย่าง ถ้าห้อง 1/1 ใส่ 11)"
-              required
-              pattern="[1-6]{2}"
-              title="กรุณากรอกตัวเลข 1 ถึง 6 จำนวน 2 ตัว"
-            />
             <button className="btsi">เพิ่มคุณครูใหม่</button>
           </form>
         </div>

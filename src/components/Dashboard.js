@@ -82,6 +82,11 @@ const DashBoard = () => {
               </Link>
             </li>
             <li className="nav-item">
+              <Link className="nav-link" to="/score">
+                วิชาเรียน
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link className="nav-link" to="/teacher">
                 คุณครู
               </Link>
@@ -96,11 +101,7 @@ const DashBoard = () => {
                 ตารางเรียน
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/score">
-                วิชาเรียน
-              </Link>
-            </li>
+            
             <li  className="nav-item">
               <Link className="nav-link" to="/homeadmin">
                 ADMIN

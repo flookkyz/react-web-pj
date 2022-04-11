@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { storage } from "../config";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
 import "./Create.css";
 
 export default function App() {
+  let { id } = useParams();
   const [file, setFile] = useState(null);
   const [url, setURL] = useState("");
   function handleChange(e) {
@@ -19,7 +21,7 @@ export default function App() {
       ref.getDownloadURL().then((url) => {
         setFile(null);
         setURL(url);
-        firebase.firestore().collection("tables").doc(this.props.match.params.id).update({
+        firebase.firestore().collection("tables").doc(id).update({
           urlPic: url,
         });
       });

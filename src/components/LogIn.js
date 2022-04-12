@@ -54,7 +54,7 @@ const LogIn = () => {
                   type="text"
                   name="email"
                   className="text-center inputtext rounded-pill"
-                  placeholder="อีเมล"
+                  placeholder="ชื่อผู้ใช้"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                 />

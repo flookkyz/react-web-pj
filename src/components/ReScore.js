@@ -123,7 +123,7 @@ class ReScore extends Component {
       <>
       <div class="position-absolute top-10 start-0">
           &nbsp;&nbsp;&nbsp;
-          <Link to={`/showscore/${this.props.match.params.uid}`}>
+          <Link to={`/showscore/${this.props.match.params.uid}/${this.props.match.params.name}`}>
             <BsFillArrowLeftCircleFill className="iconbacktop" />
           </Link>
         </div>

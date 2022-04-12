@@ -101,7 +101,7 @@ class ShowScore extends Component {
                       <td>{user.note}</td>
                       <td>{user.score}</td>
                       <td>
-                        <Link to={`/rescore/${user.rekey}/${user.key}`}>
+                        <Link to={`/rescore/${user.rekey}/${user.key}/${this.props.match.params.name}`}>
                           <button
                             type="button"
                             className="btn btn-outline-warning bt"
